@@ -10,7 +10,7 @@ type Project = {
 }
 
 const projects: Project[] = [
-  { title: 'Aurora Banking', category: 'Product Design · Case study', year: '2025', accent: '#7c5cff', to: '/case/bank-registration' },
+  { title: 'Octobank', category: 'Product Design · Case study', year: '2025', accent: '#2f6bff', to: '/case/bank-registration' },
   { title: 'Bloom Skincare', category: 'Brand Identity', year: '2025', accent: '#ff7ab6' },
   { title: 'Northwind Maps', category: 'Design System', year: '2024', accent: '#3ddc97' },
   { title: 'Cadence Music', category: 'Mobile App', year: '2024', accent: '#ffb457' },
