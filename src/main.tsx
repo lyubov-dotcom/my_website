@@ -1,10 +1,20 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import './index.css'
-import App from './App.tsx'
+import Layout from './Layout.tsx'
+import Home from './pages/Home.tsx'
+import CaseStudy from './pages/CaseStudy.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <HashRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="case/bank-registration" element={<CaseStudy />} />
+        </Route>
+      </Routes>
+    </HashRouter>
   </StrictMode>,
 )
