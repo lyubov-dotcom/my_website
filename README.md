@@ -29,6 +29,23 @@ src/index.css       # Base/reset styles
 public/favicon.svg  # Site icon
 ```
 
+## Deployment (public link via GitHub Pages)
+
+The site is published to GitHub Pages by the workflow in
+[`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). On every push to
+`main` it runs `npm ci && npm run build` and publishes `dist/`.
+
+One-time setup: in the GitHub repo, open **Settings → Pages** and set
+**Source** to **GitHub Actions**. After the next push to `main`, the site is
+available at:
+
+```
+https://lyubov-dotcom.github.io/my_website/
+```
+
+The production build uses `base: '/my_website/'` (see `vite.config.ts`) so assets
+resolve under that path; local `dev`/`preview` keep using `/`.
+
 ## Cloud Agent environment
 
 This repository is configured for Cursor Cloud Agents via
