@@ -1,14 +1,4 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-
-type Project = {
-  title: string
-  category: string
-  year: string
-  accent: string
-  to?: string
-  image?: string
-}
 
 const asset = (p: string) => `${import.meta.env.BASE_URL}${p}`
 
@@ -16,88 +6,79 @@ const scrollToId = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-const projects: Project[] = [
-  { title: 'Octobank', category: 'Product Design · Case study', year: '2026', accent: '#2f6bff', to: '/case/bank-registration', image: asset('case/octobank/new-dashboard.webp') },
-  { title: 'Bloom Skincare', category: 'Brand Identity', year: '2025', accent: '#ff7ab6' },
-  { title: 'Northwind Maps', category: 'Design System', year: '2024', accent: '#3ddc97' },
-  { title: 'Cadence Music', category: 'Mobile App', year: '2024', accent: '#ffb457' },
-]
-
 const stats = [
-  { value: '8+', label: 'Years designing' },
-  { value: '60+', label: 'Products shipped' },
-  { value: '12', label: 'Design awards' },
+  { value: '5 лет', label: 'в UX/UI и продуктовом дизайне' },
+  { value: 'Fintech', label: 'банки и цифровые продукты' },
+  { value: 'ДС', label: 'дизайн-системы с нуля и в команде' },
 ]
 
-type FormState = { name: string; email: string; message: string }
-type FormErrors = Partial<Record<keyof FormState, string>>
-
-function ProjectCard({ project }: { project: Project }) {
-  const inner = (
-    <>
-      <div
-        className={`project-thumb ${project.image ? 'project-thumb--shot' : ''}`}
-        style={{ background: `linear-gradient(135deg, ${project.accent}, transparent 140%)` }}
-      >
-        {project.image && <img className="project-shot" src={project.image} alt={`${project.title} — превью`} loading="lazy" />}
-        <span className="project-year">{project.year}</span>
-        {project.to && <span className="project-badge">View case →</span>}
-      </div>
-      <h3>{project.title}</h3>
-      <p>{project.category}</p>
-    </>
-  )
-
-  if (project.to) {
-    return (
-      <Link className="project-card project-card--link" to={project.to}>
-        {inner}
-      </Link>
-    )
-  }
-  return <article className="project-card">{inner}</article>
-}
+const jobs = [
+  {
+    company: 'Octobank',
+    role: 'Продуктовый дизайнер',
+    dates: '02.2025 — н.в.',
+    focus: 'Дебетовые карты, лояльность, дизайн-система банка.',
+    points: [
+      'Редизайн Octo-mobile: концепция, макеты разделов, пересмотр UX ключевых флоу — около 50% приложения.',
+      'Упростила главный экран: быстрее доступ к самым частым операциям.',
+      'С нуля: дебетовые карты, кешбэк и программа лояльности; первые концепции для Premium.',
+      'Новые компоненты дизайн-системы: спецификации и микровзаимодействия для разработки.',
+    ],
+  },
+  {
+    company: 'ПАО «Промсвязьбанк»',
+    role: 'Продуктовый дизайнер',
+    dates: '04.2023 — 02.2025',
+    focus: 'Цифровой рубль, дизайн-система, внутренние сервисы.',
+    points: [
+      'Сценарии кошелька ЦР: регистрация, переводы C2C/C2B, обмен, история, QR, утверждено Банком России.',
+      'Улучшила UX «Сервиса финансового посредника» — дашборд для операционистов.',
+      'Компоненты Tools: календарь событий, графики, «Древо»; документация модуля операций (>5000 операций).',
+      'Новые разделы WEB-ARM: Цифровой рубль и Мобильный оператор — от входа до завершения операции.',
+    ],
+  },
+  {
+    company: 'Freelance',
+    role: 'Дизайнер интерфейсов',
+    dates: '12.2022 — 05.2023',
+    focus: 'Лендинги и многостраничные сайты.',
+    points: [
+      'Исследование аудитории, анализ конкурентов, адаптивный дизайн.',
+      'Проекты: недвижимость, маркетплейсы, медицина; иконки и баннеры для соцсетей.',
+    ],
+  },
+  {
+    company: 'TUI Russia & CIS (сейчас FUN&SUN / FS Travel)',
+    role: 'UX-дизайнер',
+    dates: '10.2021 — 12.2022',
+    focus: 'Сайт FUN&SUN и основы дизайн-системы.',
+    points: [
+      'Макеты и адаптив сайта, новая главная, лендинги маркетинга.',
+      'Внутренние страницы: экскурсии, «О нас», «Мои заказы»; экраны системы NPS.',
+      'Компоненты и документация ДС, пак иконок в стиле Flat.',
+    ],
+  },
+]
 
 function Home() {
-  const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' })
-  const [errors, setErrors] = useState<FormErrors>({})
-  const [submitted, setSubmitted] = useState(false)
-
-  const validate = (values: FormState): FormErrors => {
-    const next: FormErrors = {}
-    if (!values.name.trim()) next.name = 'Please tell me your name.'
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) next.email = 'A valid email is required.'
-    if (values.message.trim().length < 10) next.message = 'Message should be at least 10 characters.'
-    return next
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const nextErrors = validate(form)
-    setErrors(nextErrors)
-    if (Object.keys(nextErrors).length === 0) setSubmitted(true)
-  }
-
-  const update = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm((f) => ({ ...f, [key]: e.target.value }))
-    if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }))
-  }
-
   return (
     <>
       <section id="top" className="hero">
-        <p className="eyebrow">Product &amp; Brand Designer</p>
+        <p className="eyebrow">UX/UI · продуктовый дизайнер · финтех</p>
         <h1>
-          Designing calm, <span className="accent">human</span> interfaces
-          for ambitious teams.
+          Любовь Чуйко —<br />
+          интерфейсы, в которых<br />
+          всё <span className="accent">логично</span>
         </h1>
         <p className="lede">
-          I&rsquo;m Lyubov — I help startups and studios turn complex ideas into
-          products people love to use. Clarity first, delight always.
+          Привет! Я дизайнер интерфейсов. По образованию инженер — этот опыт
+          помогает разбираться в сложных системах и не упускать детали. Слушаю
+          пользователей и нахожу общий язык с командой. 5 лет в UX/UI, сейчас
+          делаю банковские продукты.
         </p>
         <div className="hero-actions">
-          <button type="button" className="btn btn-primary" onClick={() => scrollToId('work')}>View selected work</button>
-          <button type="button" className="btn btn-ghost" onClick={() => scrollToId('contact')}>Start a project</button>
+          <button type="button" className="btn btn-primary" onClick={() => scrollToId('work')}>Смотреть работы</button>
+          <button type="button" className="btn btn-ghost" onClick={() => scrollToId('experience')}>Опыт</button>
         </div>
         <ul className="stats">
           {stats.map((s) => (
@@ -111,62 +92,97 @@ function Home() {
 
       <section id="work" className="work">
         <div className="section-head">
-          <h2>Selected work</h2>
-          <p>A few recent projects across product, brand, and systems.</p>
+          <h2>Работы</h2>
+          <p>Публичный кейс. Есть проекты под НДА — покажу на интервью.</p>
         </div>
-        <div className="project-grid">
-          {projects.map((p) => (
-            <ProjectCard key={p.title} project={p} />
+        <div className="project-grid project-grid--single">
+          <Link className="project-card project-card--link" to="/case/bank-registration">
+            <div
+              className="project-thumb project-thumb--shot"
+              style={{ background: 'linear-gradient(135deg, #2f6bff, transparent 140%)' }}
+            >
+              <img
+                className="project-shot"
+                src={asset('case/octobank/new-dashboard.webp')}
+                alt="Octobank — превью"
+                loading="lazy"
+              />
+              <span className="project-year">2026</span>
+              <span className="project-badge">Открыть кейс →</span>
+            </div>
+            <h3>Octobank</h3>
+            <p>Продуктовый дизайн · онбординг</p>
+          </Link>
+        </div>
+      </section>
+
+      <section id="experience" className="experience">
+        <div className="section-head">
+          <h2>Опыт работы</h2>
+        </div>
+        <div className="job-list">
+          {jobs.map((job) => (
+            <article className="job" key={job.company}>
+              <header className="job-head">
+                <div>
+                  <h3>{job.company}</h3>
+                  <p className="job-role">{job.role}</p>
+                </div>
+                <span className="job-dates">{job.dates}</span>
+              </header>
+              <p className="job-focus">{job.focus}</p>
+              <ul>
+                {job.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
       </section>
 
       <section id="about" className="about">
         <div className="section-head">
-          <h2>About</h2>
+          <h2>Обо мне</h2>
         </div>
         <p className="about-copy">
-          Over the last eight years I&rsquo;ve partnered with founders and product
-          teams to ship interfaces that feel effortless. My work blends rigorous
-          systems thinking with an eye for craft — typography, motion, and the
-          small details that make a product sing.
+          Меня вдохновляет дизайн, который не нужно объяснять. Цель — чтобы
+          пользователь не спрашивал: «Как этим пользоваться?» Работаю с финтехом:
+          мобильные банки, цифровые сервисы, внутренние кабинеты и дизайн-системы.
         </p>
+        <div className="edu-grid">
+          <div>
+            <h3>Образование</h3>
+            <p>РГУ нефти и газа им. И.М. Губкина</p>
+            <p className="muted">Бакалавр и магистр, химическая технология и экология · 2015, 2017</p>
+          </div>
+          <div>
+            <h3>Обучение</h3>
+            <p>Skillbox — профессия UX/UI дизайнер, 2021</p>
+            <p className="muted">Онлайн-стажировка DSGNERS! (CreativePeople и Humbleteam), 2020</p>
+          </div>
+        </div>
       </section>
 
-      <section id="contact" className="contact">
+      <section id="contacts" className="contacts">
         <div className="section-head">
-          <h2>Let&rsquo;s work together</h2>
-          <p>Tell me about your project and I&rsquo;ll get back within two days.</p>
+          <h2>Контакты</h2>
+          <p>Можно написать или позвонить — отвечаю в Telegram, WhatsApp и по почте.</p>
         </div>
-
-        {submitted ? (
-          <div className="form-success" role="status">
-            <span className="success-mark" aria-hidden="true">✓</span>
-            <div>
-              <strong>Thanks, {form.name.trim() || 'friend'}!</strong>
-              <p>Your message is on its way. I&rsquo;ll reply to {form.email} soon.</p>
-            </div>
-          </div>
-        ) : (
-          <form className="contact-form" onSubmit={handleSubmit} noValidate>
-            <div className="field">
-              <label htmlFor="name">Name</label>
-              <input id="name" type="text" value={form.name} onChange={update('name')} aria-invalid={Boolean(errors.name)} placeholder="Ada Lovelace" />
-              {errors.name && <span className="error">{errors.name}</span>}
-            </div>
-            <div className="field">
-              <label htmlFor="email">Email</label>
-              <input id="email" type="email" value={form.email} onChange={update('email')} aria-invalid={Boolean(errors.email)} placeholder="ada@studio.com" />
-              {errors.email && <span className="error">{errors.email}</span>}
-            </div>
-            <div className="field">
-              <label htmlFor="message">Project details</label>
-              <textarea id="message" rows={4} value={form.message} onChange={update('message')} aria-invalid={Boolean(errors.message)} placeholder="I'm building a…" />
-              {errors.message && <span className="error">{errors.message}</span>}
-            </div>
-            <button type="submit" className="btn btn-primary">Send message</button>
-          </form>
-        )}
+        <ul className="contact-links">
+          <li>
+            <span>Телефон</span>
+            <a href="tel:+79162538106">+7 916 253-81-06</a>
+          </li>
+          <li>
+            <span>Email</span>
+            <a href="mailto:lyubovchyiko@gmail.com">lyubovchyiko@gmail.com</a>
+          </li>
+          <li>
+            <span>Behance</span>
+            <a href="https://www.behance.net/chyukola93" target="_blank" rel="noreferrer">behance.net/chyukola93</a>
+          </li>
+        </ul>
       </section>
     </>
   )

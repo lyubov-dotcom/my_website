@@ -305,12 +305,111 @@ section {
   font-size: 0.92rem;
 }
 
+.project-grid--single {
+  max-width: 360px;
+}
+
+/* ---------- Experience ---------- */
+.experience {
+  padding-block: 3.5rem;
+}
+.job-list {
+  display: grid;
+  gap: 2.2rem;
+}
+.job {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.job:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.job h3 {
+  font-size: 1.4rem;
+}
+.job-role {
+  margin-top: 0.25rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+.job-dates {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.job-focus {
+  margin: 0.8rem 0 0.9rem;
+  color: var(--text-muted);
+}
+.job ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: grid;
+  gap: 0.45rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
 /* ---------- About ---------- */
 .about-copy {
   font-size: 1.3rem;
   line-height: 1.6;
   max-width: 42rem;
   color: var(--text);
+}
+.edu-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.6rem;
+}
+.edu-grid h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+.edu-grid .muted {
+  margin-top: 0.3rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Contacts ---------- */
+.contacts {
+  padding-block: 3.5rem;
+}
+.contact-links {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+  max-width: 34rem;
+}
+.contact-links li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.contact-links span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.contact-links a {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.contact-links a:hover {
+  color: var(--accent);
 }
 
 /* ---------- Contact ---------- */

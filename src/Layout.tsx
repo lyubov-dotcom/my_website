@@ -42,20 +42,20 @@ function Layout() {
       <header className="nav">
         <Link className="brand" to="/">
           <span className="brand-mark" aria-hidden="true">✳</span>
-          Lyubov
+          Любовь
         </Link>
         <nav className="nav-links">
-          <button type="button" onClick={() => goToSection('work')}>Work</button>
-          <button type="button" onClick={() => goToSection('about')}>About</button>
-          <button type="button" onClick={() => goToSection('contact')}>Contact</button>
+          <button type="button" onClick={() => goToSection('work')}>Работы</button>
+          <button type="button" onClick={() => goToSection('experience')}>Опыт</button>
+          <button type="button" onClick={() => goToSection('contacts')}>Контакты</button>
         </nav>
         <button
           type="button"
           className="theme-toggle"
           onClick={toggleTheme}
-          aria-label="Toggle color theme"
+          aria-label="Переключить тему"
         >
-          {theme === 'dark' ? '☀︎ Light' : '☾ Dark'}
+          {theme === 'dark' ? '☀︎ Светлая' : '☾ Тёмная'}
         </button>
       </header>
 
@@ -64,8 +64,8 @@ function Layout() {
       </main>
 
       <footer className="footer">
-        <span>© {year} Lyubov Design Studio</span>
-        <span>Made with React &amp; Vite</span>
+        <span>© {year} Любовь Чуйко</span>
+        <span>UX/UI · продуктовый дизайн · финтех</span>
       </footer>
     </div>
   )
