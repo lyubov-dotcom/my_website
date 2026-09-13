@@ -124,7 +124,7 @@ function CaseStudy() {
           <ul className="case-chips">
             <li><span>Роль</span>Product designer</li>
             <li><span>Платформы</span>iOS · Android</li>
-            <li><span>Сроки</span>2 спринта (4 недели)</li>
+            <li><span>Сроки</span>1 неделя</li>
             <li><span>Год</span>2026</li>
           </ul>
         </div>
