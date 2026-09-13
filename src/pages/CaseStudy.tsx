@@ -85,10 +85,10 @@ const secondary = [
   { value: 'Короче путь', label: 'Четыре экрана сняли с регистрации — до карты быстрее и спокойнее' },
 ]
 
-function Device({ src, alt }: { src: string; alt: string }) {
+function Device({ src, alt, bare = false }: { src: string; alt: string; bare?: boolean }) {
   return (
-    <div className="device">
-      <span className="device-notch" aria-hidden="true" />
+    <div className={`device${bare ? ' device--bare' : ''}`}>
+      {!bare && <span className="device-notch" aria-hidden="true" />}
       <img src={src} alt={alt} loading="lazy" />
     </div>
   )
@@ -122,7 +122,7 @@ function CaseStudy() {
             шаги на пути пользователя.
           </p>
           <ul className="case-chips">
-            <li><span>Роль</span>Lead Product Designer</li>
+            <li><span>Роль</span>Product designer</li>
             <li><span>Платформы</span>iOS · Android</li>
             <li><span>Сроки</span>2 спринта (4 недели)</li>
             <li><span>Год</span>2026</li>
@@ -243,11 +243,11 @@ function CaseStudy() {
           {removed.map((r) => (
             <div className="removed-item" key={r.title}>
               <div className="removed-shots">
-                <Device src={r.image} alt={`Легаси: ${r.title}`} />
+                <Device bare src={r.image} alt={`Легаси: ${r.title}`} />
                 {r.after && (
                   <>
                     <span className="removed-arrow" aria-hidden="true">→</span>
-                    <Device src={r.after} alt={`Новый: ${r.title}`} />
+                    <Device bare src={r.after} alt={`Новый: ${r.title}`} />
                   </>
                 )}
               </div>

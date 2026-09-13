@@ -137,9 +137,26 @@
   color: var(--text-muted);
   font-size: 0.88rem;
 }
-.metric--sm strong {
-  font-size: 1.8rem;
+.metric--sm {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.4rem;
+  box-shadow: none;
+}
+.metric--sm strong,
+.metric--sm .metric-word {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem !important;
+  font-weight: 600;
   color: var(--text);
+  letter-spacing: 0;
+}
+.metric--sm .metric-label {
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 0.95rem;
 }
 
 /* ---------- Block heads ---------- */
@@ -338,6 +355,15 @@
   object-fit: cover;
   object-position: top center;
   border-radius: 23px;
+}
+.device--bare {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.device--bare img {
+  border-radius: 22px;
 }
 .device-notch {
   position: absolute;
