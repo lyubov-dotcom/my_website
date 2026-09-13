@@ -6,10 +6,10 @@ import '../CaseStudy.css'
 const img = (name: string) => `${import.meta.env.BASE_URL}case/octobank/${name}.webp`
 
 const heroMetrics = [
-  { value: '+19', unit: 'п.п.', label: 'Конверсия онбординга', detail: '64% → 83%' },
+  { value: '83', unit: '%', label: 'Доходят до конца онбординга', detail: 'было 64% → стало 83%' },
   { value: '−52', unit: '%', label: 'Время до входа', detail: '5:10 → 2:30' },
-  { value: '−44', unit: '%', label: 'Обращений в поддержку', detail: 'на этапе онбординга' },
-  { value: '9→5', unit: '', label: 'Шагов в сценарии', detail: 'минус 4 экрана' },
+  { value: '−44', unit: '%', label: 'Обращений в поддержку', detail: '≈3 200 → 1 800 в месяц' },
+  { value: '12→7', unit: '', label: 'Шагов в сценарии', detail: 'минус 5 экранов' },
 ]
 
 const problems = [
@@ -138,18 +138,18 @@ function CaseStudy() {
       {/* HERO */}
       <header className="case-hero">
         <div className="case-hero-copy">
-          <p className="eyebrow">Case study · Octobank · Fintech</p>
-          <h1>Онбординг, который<br />не&nbsp;бросают на&nbsp;полпути</h1>
+          <p className="eyebrow">Octobank · Fintech · 2026</p>
+          <h1>Меньше шагов —<br />быстрее вход в&nbsp;банк</h1>
           <p className="lede">
-            Редизайн регистрации и входа в мобильный банк Octobank: убрали лишние
-            шаги, научили приложение говорить на языке устройства и встроили
-            поддержку прямо в навбар.
+            Редизайн авторизации и регистрации Octobank: сократили путь до входа,
+            заменили легаси-компоненты на новую дизайн-систему и убрали лишние
+            шаги на пути пользователя.
           </p>
           <ul className="case-chips">
             <li><span>Роль</span>Lead Product Designer</li>
             <li><span>Платформы</span>iOS · Android</li>
-            <li><span>Сроки</span>7 недель</li>
-            <li><span>Год</span>2025</li>
+            <li><span>Сроки</span>2 спринта (4 недели)</li>
+            <li><span>Год</span>2026</li>
           </ul>
         </div>
         <div className="case-hero-visual" aria-hidden="true">
@@ -176,10 +176,45 @@ function CaseStudy() {
         ))}
       </section>
 
-      {/* CONTEXT */}
+      {/* SHOWCASE */}
       <section className="case-block">
         <div className="block-head">
           <span className="block-num">01</span>
+          <h2>О проекте</h2>
+        </div>
+        <div className="showcase">
+          <figure className="showcase-slider">
+            <div className="slider-frame">
+              <BeforeAfter before={img('legacy-welcome')} after={img('new-welcome')} alt="Экран входа" />
+            </div>
+            <figcaption>Потяните ползунок: слева — легаси, справа — новый дизайн.</figcaption>
+          </figure>
+          <div className="showcase-copy">
+            <p>
+              Это полный редизайн авторизации Octobank: легаси-компоненты заменены
+              на элементы новой дизайн-системы — единые поля, кнопки, модалки и
+              типографика.
+            </p>
+            <p>
+              Но это не только визуал. Я пересобрала сам флоу и сократила число
+              шагов регистрации. Выбор языка теперь происходит автоматически — по
+              языку системы устройства, поэтому отдельный экран выбора больше не
+              нужен. При этом сменить язык можно в любой момент по иконке в навбаре.
+            </p>
+            <ul className="showcase-tags">
+              <li>Новая дизайн-система</li>
+              <li>−5 шагов регистрации</li>
+              <li>Авто-язык по системе</li>
+              <li>Смена языка в навбаре</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTEXT */}
+      <section className="case-block">
+        <div className="block-head">
+          <span className="block-num">02</span>
           <h2>С чего начинали</h2>
         </div>
         <div className="case-two">
@@ -197,7 +232,7 @@ function CaseStudy() {
       {/* SLIDERS */}
       <section className="case-block">
         <div className="block-head">
-          <span className="block-num">02</span>
+          <span className="block-num">03</span>
           <h2>Легаси ↔ Новый дизайн</h2>
           <p className="block-sub">Потяните ползунок, чтобы сравнить экраны до и после.</p>
         </div>
@@ -219,7 +254,7 @@ function CaseStudy() {
       {/* NAVBAR FEATURES */}
       <section className="case-block">
         <div className="block-head">
-          <span className="block-num">03</span>
+          <span className="block-num">04</span>
           <h2>Новый навбар: язык, диагностика, поддержка</h2>
           <p className="block-sub">
             Три вещи, которые раньше терялись, теперь всегда под рукой — в верхней панели.
@@ -242,7 +277,7 @@ function CaseStudy() {
       {/* REMOVED STEPS */}
       <section className="case-block">
         <div className="block-head">
-          <span className="block-num">04</span>
+          <span className="block-num">05</span>
           <h2>Что убрали с пути</h2>
           <p className="block-sub">
             Эти обязательные экраны больше не стоят между пользователем и приложением.
@@ -264,7 +299,7 @@ function CaseStudy() {
       {/* KEY DECISIONS */}
       <section className="case-block">
         <div className="block-head">
-          <span className="block-num">05</span>
+          <span className="block-num">06</span>
           <h2>Ключевые решения</h2>
         </div>
         <div className="changes-grid">
@@ -280,7 +315,7 @@ function CaseStudy() {
       {/* RESULTS */}
       <section className="case-block">
         <div className="block-head">
-          <span className="block-num">06</span>
+          <span className="block-num">07</span>
           <h2>Результаты</h2>
           <p className="block-sub">Через 8 недель после раскатки, в сравнении с прежним флоу.</p>
         </div>

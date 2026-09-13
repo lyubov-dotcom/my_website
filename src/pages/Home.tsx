@@ -7,10 +7,17 @@ type Project = {
   year: string
   accent: string
   to?: string
+  image?: string
+}
+
+const asset = (p: string) => `${import.meta.env.BASE_URL}${p}`
+
+const scrollToId = (id: string) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
 const projects: Project[] = [
-  { title: 'Octobank', category: 'Product Design · Case study', year: '2025', accent: '#2f6bff', to: '/case/bank-registration' },
+  { title: 'Octobank', category: 'Product Design · Case study', year: '2026', accent: '#2f6bff', to: '/case/bank-registration', image: asset('case/octobank/new-dashboard.webp') },
   { title: 'Bloom Skincare', category: 'Brand Identity', year: '2025', accent: '#ff7ab6' },
   { title: 'Northwind Maps', category: 'Design System', year: '2024', accent: '#3ddc97' },
   { title: 'Cadence Music', category: 'Mobile App', year: '2024', accent: '#ffb457' },
@@ -29,9 +36,10 @@ function ProjectCard({ project }: { project: Project }) {
   const inner = (
     <>
       <div
-        className="project-thumb"
+        className={`project-thumb ${project.image ? 'project-thumb--shot' : ''}`}
         style={{ background: `linear-gradient(135deg, ${project.accent}, transparent 140%)` }}
       >
+        {project.image && <img className="project-shot" src={project.image} alt={`${project.title} — превью`} loading="lazy" />}
         <span className="project-year">{project.year}</span>
         {project.to && <span className="project-badge">View case →</span>}
       </div>
@@ -88,8 +96,8 @@ function Home() {
           products people love to use. Clarity first, delight always.
         </p>
         <div className="hero-actions">
-          <a className="btn btn-primary" href="#work">View selected work</a>
-          <a className="btn btn-ghost" href="#contact">Start a project</a>
+          <button type="button" className="btn btn-primary" onClick={() => scrollToId('work')}>View selected work</button>
+          <button type="button" className="btn btn-ghost" onClick={() => scrollToId('contact')}>Start a project</button>
         </div>
         <ul className="stats">
           {stats.map((s) => (

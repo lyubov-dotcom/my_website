@@ -473,10 +473,62 @@
   font-size: 0.82rem;
 }
 
+/* ---------- Showcase (overview) ---------- */
+.showcase {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.showcase-slider {
+  margin: 0;
+}
+.showcase-slider figcaption {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.showcase-copy p {
+  font-size: 1.12rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+.showcase-copy p:first-child {
+  color: var(--text);
+}
+.showcase-copy p + p {
+  color: var(--text-muted);
+}
+.showcase-tags {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.showcase-tags li {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--text);
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .case-hero {
     grid-template-columns: 1fr;
+  }
+  .showcase {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+  .showcase-slider .slider-frame {
+    max-width: 280px;
   }
   .case-hero-visual {
     min-height: 380px;
