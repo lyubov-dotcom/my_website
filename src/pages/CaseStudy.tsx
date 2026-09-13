@@ -7,9 +7,9 @@ const img = (name: string) => `${import.meta.env.BASE_URL}case/octobank/${name}.
 
 const heroMetrics = [
   { value: '83', unit: '%', label: 'Доходят до конца онбординга', detail: 'было 64% → стало 83%' },
-  { value: '−52', unit: '%', label: 'Время до входа', detail: '5:10 → 2:30' },
-  { value: '−44', unit: '%', label: 'Обращений в поддержку', detail: '≈3 200 → 1 800 в месяц' },
-  { value: '12→7', unit: '', label: 'Шагов в сценарии', detail: 'минус 5 экранов' },
+  { value: 'Сократили', unit: '', label: 'время до входа на 52%', detail: '5:10 → 2:30' },
+  { value: 'Уменьшили', unit: '', label: 'обращения в поддержку на 44%', detail: '≈3 200 → 1 800 в месяц' },
+  { value: '12→8', unit: '', label: 'Шагов в сценарии', detail: 'минус 4 экрана' },
 ]
 
 const problems = [
@@ -19,72 +19,27 @@ const problems = [
   'Устаревший визуал: разнородные экраны, «тяжёлые» кнопки, нет единого ритма.',
 ]
 
-const sliders = [
-  {
-    id: 'language',
-    title: 'Выбор языка',
-    note: 'Был обязательный экран со списком языков. Стал — автоопределение по системе устройства; сменить язык можно в навбаре в любой момент.',
-    before: img('legacy-language'),
-    after: img('new-language'),
-  },
-  {
-    id: 'welcome',
-    title: 'Вход по номеру',
-    note: 'Голый ввод с цифровой клавиатурой превратился в приветственный экран с понятным контекстом и офертой.',
-    before: img('legacy-welcome'),
-    after: img('new-welcome'),
-  },
-  {
-    id: 'sms',
-    title: 'Код из СМС',
-    note: 'Одно поле без статуса → раздельные ячейки с автовводом, таймером и явным номером получателя.',
-    before: img('legacy-sms'),
-    after: img('new-sms'),
-  },
-  {
-    id: 'password',
-    title: 'Пароль',
-    note: 'Абстрактное «Установите пароль» → регистрация с живой проверкой требований и подтверждением.',
-    before: img('legacy-password'),
-    after: img('new-password'),
-  },
-  {
-    id: 'pin',
-    title: 'Код для входа',
-    note: 'Тот же ПИН, но в нативном ритме iOS: крупнее, спокойнее, с понятным заголовком.',
-    before: img('legacy-pin'),
-    after: img('new-pin'),
-  },
-  {
-    id: 'myid',
-    title: 'Идентификация',
-    note: 'Сухой экран MYID → дружелюбный шаг «Подтвердите личность» с выбором резидентства.',
-    before: img('legacy-myid'),
-    after: img('new-myid'),
-  },
-]
-
 const navbarFeatures = [
   {
     id: 'lang',
     tag: 'Язык',
     title: 'Язык — по системе, смена в навбаре',
     body: 'Приложение открывается на языке устройства. Флажок в верхнем навбаре открывает быстрый выбор языка — без отдельного шага в начале.',
-    image: img('new-language'),
+    image: img('nav-language'),
   },
   {
     id: 'info',
     tag: 'Диагностика',
     title: 'Данные об устройстве и версии',
     body: 'Под иконкой в навбаре — версия приложения, ОС и модель устройства. Одна кнопка «Скопировать данные» — и всё готово к отправке в поддержку.',
-    image: img('new-support-info'),
+    image: img('nav-diagnostics'),
   },
   {
     id: 'support',
     tag: 'Поддержка',
     title: 'Поддержка в один тап',
     body: 'Контакты собраны под иконкой в навбаре: Telegram-чат поддержки, телефон и адрес офиса — прямо из экрана входа, куда скопированные данные и отправляются.',
-    image: img('new-support-contacts'),
+    image: img('nav-support'),
   },
 ]
 
@@ -125,9 +80,9 @@ const changes = [
 ]
 
 const secondary = [
-  { value: '−100%', label: 'Отказы на экране выбора языка (шаг убран)' },
-  { value: '+31%', label: 'Онбордингов завершённых с мобильных' },
-  { value: '62 → 86', label: 'Оценка удобства (SUS)' },
+  { value: 'Без лишнего шага', label: 'Язык берётся из системы — вход начинается сразу с номера' },
+  { value: 'Поддержка в навбаре', label: 'Данные устройства копируются и уходят в Telegram одним тапом' },
+  { value: 'Короче путь', label: 'Четыре экрана сняли с регистрации — до карты быстрее и спокойнее' },
 ]
 
 function Device({ src, alt }: { src: string; alt: string }) {
@@ -157,7 +112,6 @@ function CaseStudy() {
     <article className="case">
       <button type="button" className="case-back" onClick={() => goHomeTo('work')}>← Все проекты</button>
 
-      {/* HERO */}
       <header className="case-hero">
         <div className="case-hero-copy">
           <p className="eyebrow">Octobank · Fintech · 2026</p>
@@ -184,11 +138,10 @@ function CaseStudy() {
         </div>
       </header>
 
-      {/* METRICS */}
       <section className="case-metrics">
         {heroMetrics.map((m) => (
           <div className="metric" key={m.label}>
-            <strong>
+            <strong className={m.value.length > 4 ? 'metric-word' : undefined}>
               {m.value}
               {m.unit && <em>{m.unit}</em>}
             </strong>
@@ -198,7 +151,6 @@ function CaseStudy() {
         ))}
       </section>
 
-      {/* SHOWCASE */}
       <section className="case-block">
         <div className="block-head">
           <span className="block-num">01</span>
@@ -232,7 +184,7 @@ function CaseStudy() {
             </p>
             <ul className="showcase-tags">
               <li>Новая дизайн-система</li>
-              <li>−5 шагов регистрации</li>
+              <li>Минус 4 шага регистрации</li>
               <li>Авто-язык по системе</li>
               <li>Смена языка в навбаре</li>
             </ul>
@@ -240,7 +192,6 @@ function CaseStudy() {
         </div>
       </section>
 
-      {/* CONTEXT */}
       <section className="case-block">
         <div className="block-head">
           <span className="block-num">02</span>
@@ -258,39 +209,9 @@ function CaseStudy() {
         </div>
       </section>
 
-      {/* COMPARISONS */}
       <section className="case-block">
         <div className="block-head">
           <span className="block-num">03</span>
-          <h2>Экраны: было / стало</h2>
-          <p className="block-sub">Ключевые экраны онбординга — легаси и новый дизайн рядом.</p>
-        </div>
-        <div className="pair-grid">
-          {sliders.map((s) => (
-            <figure className="pair-card" key={s.id}>
-              <div className="pair-shots">
-                <div className="pair-col">
-                  <span className="pair-label pair-label--legacy">Было</span>
-                  <Device src={s.before} alt={`Легаси: ${s.title}`} />
-                </div>
-                <div className="pair-col">
-                  <span className="pair-label pair-label--new">Стало</span>
-                  <Device src={s.after} alt={`Новый: ${s.title}`} />
-                </div>
-              </div>
-              <figcaption>
-                <h3>{s.title}</h3>
-                <p>{s.note}</p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      {/* NAVBAR FEATURES */}
-      <section className="case-block">
-        <div className="block-head">
-          <span className="block-num">04</span>
           <h2>Новый навбар: язык, диагностика, поддержка</h2>
           <p className="block-sub">
             Три вещи, которые раньше терялись, теперь всегда под рукой — в верхней панели.
@@ -310,10 +231,9 @@ function CaseStudy() {
         </div>
       </section>
 
-      {/* REMOVED STEPS */}
       <section className="case-block">
         <div className="block-head">
-          <span className="block-num">05</span>
+          <span className="block-num">04</span>
           <h2>Что убрали и упростили</h2>
           <p className="block-sub">
             Обязательные экраны, которые больше не стоят между пользователем и приложением.
@@ -340,10 +260,9 @@ function CaseStudy() {
         </div>
       </section>
 
-      {/* KEY DECISIONS */}
       <section className="case-block">
         <div className="block-head">
-          <span className="block-num">06</span>
+          <span className="block-num">05</span>
           <h2>Ключевые решения</h2>
         </div>
         <div className="changes-grid">
@@ -356,17 +275,16 @@ function CaseStudy() {
         </div>
       </section>
 
-      {/* RESULTS */}
       <section className="case-block">
         <div className="block-head">
-          <span className="block-num">07</span>
+          <span className="block-num">06</span>
           <h2>Результаты</h2>
           <p className="block-sub">Через 8 недель после раскатки, в сравнении с прежним флоу.</p>
         </div>
         <div className="secondary-metrics">
           {secondary.map((m) => (
             <div className="metric metric--sm" key={m.label}>
-              <strong>{m.value}</strong>
+              <strong className="metric-word">{m.value}</strong>
               <span className="metric-label">{m.label}</span>
             </div>
           ))}
@@ -377,15 +295,6 @@ function CaseStudy() {
           доходят до карты сами, а если застревают — решают вопрос в один тап.
         </p>
       </section>
-
-      <section className="case-cta">
-        <h2>Нужен такой же онбординг?</h2>
-        <button type="button" className="btn btn-primary" onClick={() => goHomeTo('contact')}>Обсудить проект</button>
-      </section>
-
-      <p className="case-disclaimer">
-        Метрики в кейсе приведены как иллюстрация и могут быть заменены на фактические.
-      </p>
     </article>
   )
 }
