@@ -357,12 +357,17 @@
   border-radius: 23px;
 }
 .device--bare {
+  aspect-ratio: auto;
+  height: auto;
   background: transparent;
   border: none;
   box-shadow: none;
   padding: 0;
 }
 .device--bare img {
+  display: block;
+  height: auto;
+  object-fit: contain;
   border-radius: 22px;
 }
 .device-notch {
@@ -587,7 +592,7 @@
 }
 .ba--wide {
   aspect-ratio: 1400 / 605;
-  border-radius: 16px;
+  border-radius: 32px;
 }
 .ba--wide .ba-img {
   object-position: center;

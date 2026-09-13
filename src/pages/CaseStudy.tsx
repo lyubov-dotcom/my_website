@@ -7,8 +7,8 @@ const img = (name: string) => `${import.meta.env.BASE_URL}case/octobank/${name}.
 
 const heroMetrics = [
   { value: '83', unit: '%', label: 'Доходят до конца онбординга', detail: 'было 64% → стало 83%' },
-  { value: 'Сократили', unit: '', label: 'время до входа на 52%', detail: '5:10 → 2:30' },
-  { value: 'Уменьшили', unit: '', label: 'обращения в поддержку на 44%', detail: '≈3 200 → 1 800 в месяц' },
+  { value: '52', unit: '%', label: 'Сократили время до входа', detail: '5:10 → 2:30' },
+  { value: '44', unit: '%', label: 'Уменьшили обращения в поддержку', detail: '≈3 200 → 1 800 в месяц' },
   { value: '12→8', unit: '', label: 'Шагов в сценарии', detail: 'минус 4 экрана' },
 ]
 
