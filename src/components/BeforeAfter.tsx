@@ -6,6 +6,7 @@ type Props = {
   beforeLabel?: string
   afterLabel?: string
   alt: string
+  className?: string
 }
 
 export default function BeforeAfter({
@@ -14,6 +15,7 @@ export default function BeforeAfter({
   beforeLabel = 'Легаси',
   afterLabel = 'Новый',
   alt,
+  className = '',
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const dragging = useRef(false)
@@ -50,7 +52,7 @@ export default function BeforeAfter({
 
   return (
     <div
-      className="ba"
+      className={`ba ${className}`.trim()}
       ref={containerRef}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}

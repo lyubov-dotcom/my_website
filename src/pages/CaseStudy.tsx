@@ -88,11 +88,33 @@ const navbarFeatures = [
   },
 ]
 
-const removed = [
-  { image: img('legacy-citizenship'), label: 'Выбор гражданства' },
-  { image: img('legacy-ravnaq'), label: 'Вопрос про Ravnaq банк' },
-  { image: img('legacy-privacy'), label: 'Отдельный экран согласий' },
-  { image: img('legacy-kyc'), label: 'Поповер статуса KYC' },
+const removed: {
+  image: string
+  title: string
+  body: string
+  after?: string
+}[] = [
+  {
+    image: img('legacy-language'),
+    title: 'Экран выбора языка',
+    body: 'Убрали обязательный первый шаг: приложение подстраивается под язык системы устройства. Сменить язык можно в любой момент — по иконке в навбаре.',
+  },
+  {
+    image: img('legacy-privacy'),
+    title: 'Обязательное подписание документов',
+    body: 'Отдельный экран согласий заменили короткой строкой над кнопкой: отправляя номер телефона, пользователь принимает документы. Сами документы открываются по ссылкам прямо в этом тексте.',
+  },
+  {
+    image: img('legacy-ravnaq'),
+    title: 'Вопрос «вы клиент банка?»',
+    body: 'Больше не спрашиваем — определяем это автоматически по введённому номеру телефона.',
+  },
+  {
+    image: img('legacy-citizenship'),
+    after: img('new-myid'),
+    title: 'Селектор гражданства',
+    body: 'Вместо выпадающего списка — экран с двумя кнопками: «Я резидент Узбекистана» и «Я не резидент». Для клиента разницы нет — все проходят биометрию через MyID. Шаг нужен команде разработки: по нему понятно, какой функционал доступен пользователю (например, нерезиденту недоступны некоторые услуги, такие как кредит).',
+  },
 ]
 
 const changes = [
@@ -184,8 +206,15 @@ function CaseStudy() {
         </div>
         <div className="showcase">
           <figure className="showcase-slider">
-            <div className="slider-frame">
-              <BeforeAfter before={img('legacy-welcome')} after={img('new-welcome')} alt="Экран входа" />
+            <div className="showcase-frame">
+              <BeforeAfter
+                className="ba--wide"
+                before={img('frames-legacy')}
+                after={img('frames-new')}
+                alt="Экраны онбординга Octobank"
+                beforeLabel="Легаси"
+                afterLabel="Новый дизайн"
+              />
             </div>
             <figcaption>Потяните ползунок: слева — легаси, справа — новый дизайн.</figcaption>
           </figure>
@@ -229,18 +258,25 @@ function CaseStudy() {
         </div>
       </section>
 
-      {/* SLIDERS */}
+      {/* COMPARISONS */}
       <section className="case-block">
         <div className="block-head">
           <span className="block-num">03</span>
-          <h2>Легаси ↔ Новый дизайн</h2>
-          <p className="block-sub">Потяните ползунок, чтобы сравнить экраны до и после.</p>
+          <h2>Экраны: было / стало</h2>
+          <p className="block-sub">Ключевые экраны онбординга — легаси и новый дизайн рядом.</p>
         </div>
-        <div className="slider-grid">
+        <div className="pair-grid">
           {sliders.map((s) => (
-            <figure className="slider-card" key={s.id}>
-              <div className="slider-frame">
-                <BeforeAfter before={s.before} after={s.after} alt={s.title} />
+            <figure className="pair-card" key={s.id}>
+              <div className="pair-shots">
+                <div className="pair-col">
+                  <span className="pair-label pair-label--legacy">Было</span>
+                  <Device src={s.before} alt={`Легаси: ${s.title}`} />
+                </div>
+                <div className="pair-col">
+                  <span className="pair-label pair-label--new">Стало</span>
+                  <Device src={s.after} alt={`Новый: ${s.title}`} />
+                </div>
               </div>
               <figcaption>
                 <h3>{s.title}</h3>
@@ -278,20 +314,28 @@ function CaseStudy() {
       <section className="case-block">
         <div className="block-head">
           <span className="block-num">05</span>
-          <h2>Что убрали с пути</h2>
+          <h2>Что убрали и упростили</h2>
           <p className="block-sub">
-            Эти обязательные экраны больше не стоят между пользователем и приложением.
+            Обязательные экраны, которые больше не стоят между пользователем и приложением.
           </p>
         </div>
-        <div className="removed-grid">
+        <div className="removed-list">
           {removed.map((r) => (
-            <figure className="removed-card" key={r.label}>
-              <Device src={r.image} alt={r.label} />
-              <figcaption>
-                <span className="removed-x" aria-hidden="true">✕</span>
-                {r.label}
-              </figcaption>
-            </figure>
+            <div className="removed-item" key={r.title}>
+              <div className="removed-shots">
+                <Device src={r.image} alt={`Легаси: ${r.title}`} />
+                {r.after && (
+                  <>
+                    <span className="removed-arrow" aria-hidden="true">→</span>
+                    <Device src={r.after} alt={`Новый: ${r.title}`} />
+                  </>
+                )}
+              </div>
+              <div className="removed-copy">
+                <h3><span className="removed-x" aria-hidden="true">✕</span>{r.title}</h3>
+                <p>{r.body}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>
