@@ -143,6 +143,10 @@ body {
   gap: 0.9rem;
 }
 
+.hero .stats {
+  margin-top: 2.4rem;
+}
+
 .btn {
   cursor: pointer;
   display: inline-flex;
@@ -222,7 +226,7 @@ section {
 /* ---------- Work ---------- */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.4rem;
 }
 
@@ -274,6 +278,11 @@ section {
   overflow: hidden;
 }
 
+.project-thumb--cover {
+  aspect-ratio: 712 / 668;
+  background: #111;
+}
+
 .project-shot {
   position: absolute;
   inset: 0;
@@ -303,10 +312,6 @@ section {
   margin-top: 0.3rem;
   color: var(--text-muted);
   font-size: 0.92rem;
-}
-
-.project-grid--single {
-  max-width: 360px;
 }
 
 /* ---------- Experience ---------- */
@@ -356,29 +361,6 @@ section {
   gap: 0.45rem;
   color: var(--text);
   line-height: 1.5;
-}
-
-/* ---------- About ---------- */
-.about-copy {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  max-width: 42rem;
-  color: var(--text);
-}
-.edu-grid {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.6rem;
-}
-.edu-grid h3 {
-  font-size: 1.15rem;
-  margin-bottom: 0.5rem;
-}
-.edu-grid .muted {
-  margin-top: 0.3rem;
-  color: var(--text-muted);
-  font-size: 0.95rem;
 }
 
 /* ---------- Contacts ---------- */
@@ -504,6 +486,12 @@ section {
   border-top: 1px solid var(--border);
   color: var(--text-muted);
   font-size: 0.88rem;
+}
+
+@media (max-width: 720px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 620px) {

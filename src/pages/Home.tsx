@@ -2,14 +2,27 @@ import { Link } from 'react-router-dom'
 
 const asset = (p: string) => `${import.meta.env.BASE_URL}${p}`
 
-const scrollToId = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-}
-
 const stats = [
   { value: '5 лет', label: 'в UX/UI и продуктовом дизайне' },
   { value: 'Fintech', label: 'банки и цифровые продукты' },
   { value: 'ДС', label: 'дизайн-системы с нуля и в команде' },
+]
+
+const cases = [
+  {
+    to: '/case/bank-registration',
+    cover: 'case/covers/octobank-onboarding.webp',
+    title: 'Octobank',
+    subtitle: 'Регистрация нового пользователя',
+    year: '2026',
+  },
+  {
+    to: '/case/octobank-premium',
+    cover: 'case/covers/octobank-premium.webp',
+    title: 'Octobank Premium',
+    subtitle: 'Подключение премиального сервиса',
+    year: '2026',
+  },
 ]
 
 const jobs = [
@@ -17,12 +30,13 @@ const jobs = [
     company: 'Octobank',
     role: 'Продуктовый дизайнер',
     dates: '02.2025 — н.в.',
-    focus: 'Дебетовые карты, лояльность, дизайн-система банка.',
+    focus: 'Редизайн Octo-Mobile, продуктовые сценарии и дизайн-система банка.',
     points: [
-      'Редизайн Octo-mobile: концепция, макеты разделов, пересмотр UX ключевых флоу — около 50% приложения.',
-      'Упростила главный экран: быстрее доступ к самым частым операциям.',
-      'С нуля: дебетовые карты, кешбэк и программа лояльности; первые концепции для Premium.',
-      'Новые компоненты дизайн-системы: спецификации и микровзаимодействия для разработки.',
+      'Вела редизайн мобильного приложения Octo-Mobile: разрабатывала и презентовала дизайн-концепции, согласовывала направление со стейкхолдерами и командой.',
+      'Проектировала макеты всех разделов банковского приложения на основе утверждённой концепции — от навигации до продуктовых сценариев.',
+      'Пересматривала UX существующих флоу: находила трение, предлагала более короткие пути и доводила решения до продакшена.',
+      'Работала с разработчиками, аналитиками, тестировщиками и PM на всех этапах — от постановки задачи до релиза.',
+      'Проводила дизайн-ревью вёрстки: сверяла реализацию со спецификациями и закрывала расхождения до раскатки.',
     ],
   },
   {
@@ -76,10 +90,6 @@ function Home() {
           пользователей и нахожу общий язык с командой. 5 лет в UX/UI, сейчас
           делаю банковские продукты.
         </p>
-        <div className="hero-actions">
-          <button type="button" className="btn btn-primary" onClick={() => scrollToId('work')}>Смотреть работы</button>
-          <button type="button" className="btn btn-ghost" onClick={() => scrollToId('experience')}>Опыт</button>
-        </div>
         <ul className="stats">
           {stats.map((s) => (
             <li key={s.label}>
@@ -93,26 +103,25 @@ function Home() {
       <section id="work" className="work">
         <div className="section-head">
           <h2>Работы</h2>
-          <p>Публичный кейс. Есть проекты под НДА — покажу на интервью.</p>
+          <p>Здесь публичные кейсы. Есть много проектов под НДА могу показать на интервью.</p>
         </div>
-        <div className="project-grid project-grid--single">
-          <Link className="project-card project-card--link" to="/case/bank-registration">
-            <div
-              className="project-thumb project-thumb--shot"
-              style={{ background: 'linear-gradient(135deg, #2f6bff, transparent 140%)' }}
-            >
-              <img
-                className="project-shot"
-                src={asset('case/octobank/new-dashboard.webp')}
-                alt="Octobank — превью"
-                loading="lazy"
-              />
-              <span className="project-year">2026</span>
-              <span className="project-badge">Открыть кейс →</span>
-            </div>
-            <h3>Octobank</h3>
-            <p>Продуктовый дизайн · онбординг</p>
-          </Link>
+        <div className="project-grid">
+          {cases.map((item) => (
+            <Link className="project-card project-card--link" to={item.to} key={item.to}>
+              <div className="project-thumb project-thumb--cover">
+                <img
+                  className="project-shot"
+                  src={asset(item.cover)}
+                  alt={item.title}
+                  loading="lazy"
+                />
+                <span className="project-year">{item.year}</span>
+                <span className="project-badge">Открыть кейс →</span>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.subtitle}</p>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -138,29 +147,6 @@ function Home() {
               </ul>
             </article>
           ))}
-        </div>
-      </section>
-
-      <section id="about" className="about">
-        <div className="section-head">
-          <h2>Обо мне</h2>
-        </div>
-        <p className="about-copy">
-          Меня вдохновляет дизайн, который не нужно объяснять. Цель — чтобы
-          пользователь не спрашивал: «Как этим пользоваться?» Работаю с финтехом:
-          мобильные банки, цифровые сервисы, внутренние кабинеты и дизайн-системы.
-        </p>
-        <div className="edu-grid">
-          <div>
-            <h3>Образование</h3>
-            <p>РГУ нефти и газа им. И.М. Губкина</p>
-            <p className="muted">Бакалавр и магистр, химическая технология и экология · 2015, 2017</p>
-          </div>
-          <div>
-            <h3>Обучение</h3>
-            <p>Skillbox — профессия UX/UI дизайнер, 2021</p>
-            <p className="muted">Онлайн-стажировка DSGNERS! (CreativePeople и Humbleteam), 2020</p>
-          </div>
         </div>
       </section>
 
