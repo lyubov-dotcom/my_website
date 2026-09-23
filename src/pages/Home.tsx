@@ -2,12 +2,6 @@ import { Link } from 'react-router-dom'
 
 const asset = (p: string) => `${import.meta.env.BASE_URL}${p}`
 
-const stats = [
-  { value: '5 лет', label: 'в UX/UI и продуктовом дизайне' },
-  { value: 'Fintech', label: 'банки и цифровые продукты' },
-  { value: 'ДС', label: 'дизайн-системы с нуля и в команде' },
-]
-
 const cases = [
   {
     to: '/case/bank-registration',
@@ -80,24 +74,16 @@ function Home() {
       <section id="top" className="hero">
         <p className="eyebrow">UX/UI · продуктовый дизайнер · финтех</p>
         <h1>
-          Любовь Чуйко —<br />
-          интерфейсы, в которых<br />
+          Интерфейсы, в которых<br />
           всё <span className="accent">логично</span>
         </h1>
         <p className="lede">
-          Привет! Я дизайнер интерфейсов. По образованию инженер — этот опыт
-          помогает разбираться в сложных системах и не упускать детали. Слушаю
-          пользователей и нахожу общий язык с командой. 5 лет в UX/UI, сейчас
-          делаю банковские продукты.
+          Я UX/UI-дизайнер с инженерным бэкграундом. Мой опыт позволяет видеть
+          систему целиком, разбираться в сложных механизмах и не упускать детали.
+          Слушаю пользователей, слышу команду и уже 5 лет создаю продукты,
+          которым удобно доверять. Сейчас работаю над интерфейсами для банковской
+          сферы.
         </p>
-        <ul className="stats">
-          {stats.map((s) => (
-            <li key={s.label}>
-              <strong>{s.value}</strong>
-              <span>{s.label}</span>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section id="work" className="work">

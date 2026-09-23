@@ -133,7 +133,7 @@ body {
   font-size: 1.15rem;
   line-height: 1.65;
   color: var(--text-muted);
-  max-width: 34rem;
+  max-width: 42rem;
 }
 
 .hero-actions {
@@ -141,10 +141,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
-}
-
-.hero .stats {
-  margin-top: 2.4rem;
 }
 
 .btn {
@@ -181,27 +177,6 @@ body {
 .btn-ghost:hover {
   transform: translateY(-2px);
   border-color: var(--accent);
-}
-
-.stats {
-  list-style: none;
-  padding: 0;
-  margin-top: 3rem;
-  display: flex;
-  gap: 3rem;
-  flex-wrap: wrap;
-}
-
-.stats strong {
-  display: block;
-  font-family: 'Fraunces', serif;
-  font-size: 2rem;
-  color: var(--text);
-}
-
-.stats span {
-  color: var(--text-muted);
-  font-size: 0.9rem;
 }
 
 /* ---------- Sections ---------- */
