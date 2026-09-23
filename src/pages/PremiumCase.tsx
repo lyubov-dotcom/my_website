@@ -18,20 +18,20 @@ const toc = [
 ] as const
 
 const metrics = [
-  { value: '1 140', unit: '', label: 'Новых подключений в месяц', detail: 'после стабилизации базы' },
-  { value: '6 800', unit: '', label: 'Продлений подписки в месяц', detail: 'платных и бесплатных вместе' },
-  { value: '39', unit: '%', label: 'Платят со второго месяца', detail: '61% выполняют условие и остаются бесплатно' },
+  { value: '1 140', unit: '', label: 'Подключений в месяц', detail: 'Новые клиенты, первый месяц бесплатный' },
+  { value: '6 800', unit: '', label: 'Продлений в месяц', detail: 'Платных и бесплатных вместе' },
+  { value: '39%', unit: '', label: 'Покупают подписку', detail: '61% выполняют условие и остаются бесплатно' },
   { value: '588', unit: 'млн', label: 'Выручка в месяц, UZS', detail: '2 650 платных продлений × 222 000' },
 ]
 
 const aboutFacts = [
   {
-    text: 'Клиент видит пакет привилегий целиком и подключает сервис с главной — без отдельного раздела в дебрях меню.',
+    text: 'Клиент видит пакет привилегий целиком и подключает сервис с главной — без поиска в меню.',
     tone: 'light' as const,
     icon: 'pulse' as const,
   },
   {
-    text: 'Каждая привилегия раскрывается деталью: ставки, менеджер, курс. Список оффера остаётся оглавлением.',
+    text: 'Привилегии собраны в один список: карта, менеджер, ставки, курс. Каждая строка открывает деталь.',
     tone: 'dark' as const,
     icon: 'people' as const,
   },
@@ -42,11 +42,31 @@ const aboutFacts = [
   },
 ]
 
-const flow = [
-  { title: 'Увидеть оффер', body: 'С главной открыть Premium и понять пакет за минуту.' },
-  { title: 'Разобрать привилегии', body: 'Открыть деталь и вернуться к кнопке, не потеряв контекст.' },
-  { title: 'Подключить', body: 'Увидеть цену, карту списания и нажать одну кнопку.' },
-  { title: 'Следить за статусом', body: 'Льгота, продление и прогресс условий — в «Мой Premium».' },
+const scenes = [
+  {
+    title: 'Увидеть оффер',
+    body: 'С главной открыть Premium и понять пакет за минуту.',
+    src: img('offer'),
+    alt: 'Оффер Premium',
+  },
+  {
+    title: 'Разобрать привилегии',
+    body: 'Открыть деталь и вернуться к кнопке, не потеряв контекст.',
+    src: img('privilege-deposit'),
+    alt: 'Деталь привилегии',
+  },
+  {
+    title: 'Подключить',
+    body: 'Увидеть цену, карту списания и нажать одну кнопку.',
+    src: img('checkout'),
+    alt: 'Экран подключения',
+  },
+  {
+    title: 'Следить за статусом',
+    body: 'Льгота, продление и прогресс условий — в «Мой Premium».',
+    src: img('status-grace'),
+    alt: 'Статус подписки',
+  },
 ]
 
 const crafted = [
@@ -61,9 +81,9 @@ const crafted = [
 ]
 
 const problems = [
-  'На оффере нужно было показать весь пакет и дать раскрыть любую привилегию, не уводя с кнопки «Подключить».',
-  'Первый месяц бесплатный, дальше 222 000 UZS или бесплатно по условию. Цифры и прогресс нельзя прятать в оферту — они должны стоять рядом со статусом.',
-  'После подключения два разных состояния: льгота ещё действует и месяц уже платный. Одна логика, разные акценты — иначе человек не понимает, за что спишут деньги.',
+  'На оффере нужно было уместить весь пакет и дать раскрыть любую привилегию, не уводя с кнопки «Подключить».',
+  'Первый месяц бесплатный, дальше 222 000 UZS или бесплатно по условию. Эту развилку нельзя прятать в оферту — цифры и прогресс должны стоять рядом со статусом.',
+  'После подключения два состояния: льгота ещё действует и месяц уже платный. Одна логика, разные акценты — иначе человек не понимает, за что спишут деньги.',
 ]
 
 function Icon({ name }: { name: 'pulse' | 'people' | 'scope' }) {
@@ -102,47 +122,50 @@ function Phone({ src, alt, caption }: { src: string; alt: string; caption?: stri
   )
 }
 
-function ScenarioTrack() {
+function ScenarioStage() {
   const [step, setStep] = useState(0)
   const [paused, setPaused] = useState(false)
+  const current = scenes[step]
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduce || paused) return undefined
     const timer = window.setInterval(() => {
-      setStep((current) => (current + 1) % flow.length)
-    }, 2800)
+      setStep((value) => (value + 1) % scenes.length)
+    }, 3200)
     return () => window.clearInterval(timer)
   }, [paused])
 
   return (
     <div
-      className="scenario"
+      className="scene"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="scenario-cards">
-        {flow.map((item, index) => {
-          const state = index < step ? 'is-done' : index === step ? 'is-active' : 'is-next'
+      <ol className="scene-steps">
+        {scenes.map((item, index) => {
+          const state = index < step ? 'is-done' : index === step ? 'is-active' : 'is-wait'
           return (
-            <button
-              type="button"
-              key={item.title}
-              className={`scenario-card ${state}`}
-              onClick={() => setStep(index)}
-            >
-              <span className="scenario-index">{String(index + 1).padStart(2, '0')}</span>
-              <strong>{item.title}</strong>
-              <p>{item.body}</p>
-              <span className="scenario-fill" aria-hidden="true" />
-            </button>
+            <li key={item.title}>
+              <button
+                type="button"
+                className={`scene-step ${state}`}
+                onClick={() => setStep(index)}
+              >
+                <span className="scene-num">{String(index + 1).padStart(2, '0')}</span>
+                <span className="scene-copy">
+                  <strong>{item.title}</strong>
+                  <em>{item.body}</em>
+                </span>
+                <span className="scene-meter" aria-hidden="true" />
+              </button>
+            </li>
           )
         })}
-      </div>
-      <div className="scenario-rail" aria-hidden="true">
-        <span className="scenario-rail-line" />
-        <span className="scenario-rail-token" style={{ left: `${(step / (flow.length - 1)) * 100}%` }} />
-      </div>
+      </ol>
+      <figure className="scene-preview">
+        <img key={current.src} src={current.src} alt={current.alt} />
+      </figure>
     </div>
   )
 }
@@ -222,20 +245,20 @@ function PremiumCase() {
           </header>
 
           <section className="case-metrics">
-            {metrics.map((m) => (
-              <div className="metric" key={m.label}>
-                <strong className={m.value.includes(' ') ? 'metric-word' : undefined}>
-                  {m.value}
-                  {m.unit && <em>{m.unit}</em>}
+            {metrics.map((item) => (
+              <div className="metric" key={item.label}>
+                <strong className={item.value.includes(' ') ? 'metric-word' : undefined}>
+                  {item.value}
+                  {item.unit && <em>{item.unit}</em>}
                 </strong>
-                <span className="metric-label">{m.label}</span>
-                <span className="metric-detail">{m.detail}</span>
+                <span className="metric-label">{item.label}</span>
+                <span className="metric-detail">{item.detail}</span>
               </div>
             ))}
           </section>
 
           <section id="about" className="story-section">
-            <p className="story-kicker">О проекте</p>
+            <h2 className="story-title">О проекте</h2>
             <div className="about-board">
               <figure className="about-visual">
                 <img
@@ -260,35 +283,28 @@ function PremiumCase() {
           </section>
 
           <section id="role" className="story-section">
-            <p className="story-kicker">Роль</p>
-            <h2>Отвечала за сценарий с нуля до передачи в разработку</h2>
+            <h2 className="story-title">Роль</h2>
             <p className="story-lead">
-              Собрала оффер, детали привилегий и два состояния после подключения:
-              льготный период и платная подписка. Предложила считать бесплатное
-              продление отдельным исходом — не «скидкой», а выполнением условия
-              по остатку или тратам.
+              Отвечала за сценарий с нуля до передачи в разработку. Предложила
+              считать бесплатное продление отдельным исходом — не скидкой,
+              а выполнением условия по остатку или тратам картой банка.
             </p>
           </section>
 
           <section id="made" className="story-section">
-            <p className="story-kicker">Сделала</p>
-            <h2>оффер со списком привилегий</h2>
-            <div className="story-phones story-phones--one">
+            <h2 className="story-title">Сделала</h2>
+            <p className="story-sub">оффер со списком привилегий</p>
+            <div className="made-stage">
               <Phone
                 src={img('offer')}
                 alt="Экран оффера Octobank Premium"
-                caption="Оффер · полный пакет и кнопка «Подключить»"
               />
             </div>
           </section>
 
           <section id="crafted" className="story-section">
-            <p className="story-kicker">Проработала</p>
-            <h2>экраны входа, деталей, оплаты и статусов</h2>
-            <p className="story-lead">
-              Точка входа на главной, шторки привилегий, экран подключения,
-              условия бесплатности и два вида «Мой Premium» — льгота и платный месяц.
-            </p>
+            <h2 className="story-title">Проработала</h2>
+            <p className="story-sub">экраны входа, деталей, оплаты и статусов</p>
             <div className="story-phones story-phones--gallery">
               {crafted.map((shot) => (
                 <Phone key={shot.src} src={shot.src} alt={shot.alt} caption={shot.caption} />
@@ -297,18 +313,16 @@ function PremiumCase() {
           </section>
 
           <section id="flow" className="story-section">
-            <p className="story-kicker">Сценарий</p>
-            <h2>Четыре шага до статуса</h2>
-            <ScenarioTrack />
+            <h2 className="story-title">Сценарий</h2>
+            <ScenarioStage />
           </section>
 
           <section id="problems" className="story-section">
-            <p className="story-kicker">Проблемы</p>
-            <h2>С чем столкнулась</h2>
+            <h2 className="story-title">Проблемы</h2>
             <div className="problem-grid">
               {problems.map((text, index) => (
                 <div className="problem-card" key={text}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <span>{index + 1}</span>
                   <p>{text}</p>
                 </div>
               ))}
@@ -316,18 +330,18 @@ function PremiumCase() {
           </section>
 
           <section id="results" className="story-section">
-            <p className="story-kicker">Результаты</p>
-            <h2>Сценарий, который приносит и выручку, и остатки</h2>
+            <h2 className="story-title">Результаты</h2>
             <p className="story-lead">
-              Появился путь от оффера до статуса. Ниже — типичный месяц
-              после стабилизации базы: часть клиентов платит 222&nbsp;000 UZS,
-              часть держит бесплатное продление за остаток или траты.
+              Появился сценарий, который связывает оффер, оплату и статус.
+              Ниже — типичный месяц после стабилизации базы: часть клиентов
+              платит 222&nbsp;000 UZS, часть держит бесплатное продление
+              за остаток или траты.
             </p>
             <div className="result-grid">
               <div className="result-card result-card--accent">
                 <strong>588 <em>млн</em></strong>
-                <span>UZS выручки в месяц с платных продлений</span>
-                <p>2 650 человек × 222 000. Без разовых акций и без завышения базы.</p>
+                <span>UZS выручки в месяц</span>
+                <p>2 650 платных продлений × 222 000. Без разовых акций и без раздутой базы.</p>
               </div>
               <div className="result-card">
                 <strong>39 / 61</strong>
@@ -336,7 +350,7 @@ function PremiumCase() {
                   <b style={{ width: '39%' }} />
                   <i style={{ width: '61%' }} />
                 </div>
-                <p>4 150 продлений закрывают условием по остатку или оплатам картой Octobank.</p>
+                <p>Из 6 800 продлений 4 150 закрывают условием по остатку или оплатам картой Octobank.</p>
               </div>
               <div className="result-card">
                 <strong>1 140</strong>
