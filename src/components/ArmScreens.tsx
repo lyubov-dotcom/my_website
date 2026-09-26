@@ -9,20 +9,20 @@ export type ArmScreenId =
   | 'shift'
 
 const nav = [
-  { id: 'overview', label: 'Смена' },
-  { id: 'segments', label: 'Сегменты' },
+  { id: 'overview', label: 'Сегодня' },
+  { id: 'segments', label: 'Списки' },
   { id: 'queue', label: 'Очередь' },
   { id: 'operation', label: 'Операция' },
   { id: 'shift', label: 'Итог' },
 ] as const
 
 const crumbs: Record<ArmScreenId, string> = {
-  overview: 'nord.arm / смена',
-  segments: 'nord.arm / сегменты',
-  detail: 'nord.arm / сегменты / цр · первый вход',
-  queue: 'nord.arm / очередь',
-  operation: 'nord.arm / операция / ор-1842',
-  shift: 'nord.arm / итог смены',
+  overview: 'арм / сегодня',
+  segments: 'арм / списки',
+  detail: 'арм / списки / новый кошелёк',
+  queue: 'арм / очередь',
+  operation: 'арм / операция / 1842',
+  shift: 'арм / итог дня',
 }
 
 const activeNav: Record<ArmScreenId, string> = {
@@ -50,65 +50,65 @@ function Overview() {
     <>
       <header className="arm-head">
         <div>
-          <p className="arm-kicker">Смена · 12 марта · 09:12</p>
-          <h3>Кого брать в работу</h3>
+          <p className="arm-kicker">Сегодня · 12 марта · 09:12</p>
+          <h3>Кому помочь сегодня</h3>
         </div>
         <div className="arm-head-meta">
-          <span>Оператор И. Соколова</span>
+          <span>Сотрудник И. Соколова</span>
           <button type="button" className="arm-btn arm-btn--ghost">Пауза</button>
         </div>
       </header>
       <div className="arm-kpi">
         <article>
           <strong>186</strong>
-          <span>В очереди на старте</span>
+          <span>В очереди утром</span>
         </article>
         <article>
           <strong>42</strong>
-          <span>Закрыто за смену</span>
+          <span>Сделано за день</span>
         </article>
         <article>
           <strong>11</strong>
           <em>мин</em>
-          <span>Медиана закрытия</span>
+          <span>На одну операцию</span>
         </article>
         <article>
           <strong>3</strong>
-          <span>Эскалации</span>
+          <span>Передали старшему</span>
         </article>
       </div>
       <div className="arm-split">
         <section className="arm-panel">
           <header>
-            <h4>Горящие сегменты</h4>
-            <span>правило → очередь</span>
+            <h4>Кому помочь срочно</h4>
+            <span>из списка сразу в работу</span>
           </header>
           <ul className="arm-seg-cards">
             <li>
-              <b>ЦР · первый вход</b>
-              <p>Не завершили первую операцию цифрового рубля</p>
+              <b>Новый кошелёк</b>
+              <p>Не закончили первую операцию с цифровым рублём</p>
               <em>38 человек</em>
             </li>
             <li className="is-hot">
-              <b>Посредник · зависли</b>
-              <p>Проверка дольше 20 минут, клиент на линии</p>
+              <b>Застряли на проверке</b>
+              <p>Проверка дольше 20 минут, клиент ждёт</p>
               <em>14 человек</em>
             </li>
             <li>
-              <b>Мобильный оператор</b>
-              <p>Смена тарифа без подтверждения</p>
+              <b>Смена тарифа</b>
+              <p>Не подтвердили смену</p>
               <em>21 человек</em>
             </li>
             <li>
-              <b>Возврат в очередь</b>
-              <p>Вчера не дошли до закрытия</p>
+              <b>Вчера не доделали</b>
+              <p>Не нажали «Готово»</p>
               <em>9 человек</em>
             </li>
           </ul>
         </section>
         <section className="arm-panel">
           <header>
-            <h4>Темп смены</h4>
+            <h4>Как шёл день</h4>
             <span>операций в час</span>
           </header>
           <div className="arm-bars" aria-hidden="true">
@@ -119,7 +119,7 @@ function Overview() {
               </div>
             ))}
           </div>
-          <p className="arm-note">Пик в 12:00 — после обеденной волны входящих.</p>
+          <p className="arm-note">Больше всего дел в 12:00, после обеда.</p>
         </section>
       </div>
     </>
@@ -128,41 +128,41 @@ function Overview() {
 
 function Segments() {
   const rows = [
-    ['ЦР · первый вход', '38', 'Статус = черновик · продукт = ЦР', 'Соколова', '09:04'],
-    ['Посредник · зависли', '14', 'Шаг = проверка · время > 20 мин', 'Очередь', '09:11'],
-    ['Мобильный оператор', '21', 'Действие = смена тарифа · нет OTP', 'Смена B', '08:50'],
-    ['Высокий остаток', '56', 'Остаток > 1.5 млн · нет депозита', 'Отложено', 'вчера'],
-    ['Возврат в очередь', '9', 'Вчера · не закрыто', 'Соколова', '08:12'],
+    ['Новый кошелёк', '38', 'Кошелёк ещё не открыт', 'Соколова', '09:04'],
+    ['Застряли на проверке', '14', 'Проверка дольше 20 минут', 'Очередь', '09:11'],
+    ['Смена тарифа', '21', 'Нет кода из смс', 'Смена B', '08:50'],
+    ['Большой остаток', '56', 'Есть деньги, нет вклада', 'Отложено', 'вчера'],
+    ['Вчера не доделали', '9', 'Не нажали «Готово»', 'Соколова', '08:12'],
   ]
   return (
     <>
       <header className="arm-head">
         <div>
-          <p className="arm-kicker">Сегменты</p>
-          <h3>Правила, из которых собирается очередь</h3>
+          <p className="arm-kicker">Списки</p>
+          <h3>Кого собрать в работу</h3>
         </div>
-        <button type="button" className="arm-btn">Новое правило</button>
+        <button type="button" className="arm-btn">Новый список</button>
       </header>
       <div className="arm-filters">
         <span className="is-on">Все продукты</span>
         <span>Цифровой рубль</span>
-        <span>Посредник</span>
-        <span>Мобильный оператор</span>
-        <span className="arm-search">Поиск по правилу</span>
+        <span>Платежи</span>
+        <span>Связь</span>
+        <span className="arm-search">Найти список</span>
       </div>
       <table className="arm-table">
         <thead>
           <tr>
-            <th>Сегмент</th>
+            <th>Список</th>
             <th>Людей</th>
-            <th>Правило</th>
-            <th>Владелец</th>
+            <th>Когда попадает сюда</th>
+            <th>Кто ведёт</th>
             <th>Обновлён</th>
           </tr>
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row[0]} className={row[0].startsWith('Посредник') ? 'is-on' : undefined}>
+            <tr key={row[0]} className={row[0].startsWith('Застряли') ? 'is-on' : undefined}>
               {row.map((cell) => (
                 <td key={cell}>{cell}</td>
               ))}
@@ -179,37 +179,37 @@ function Detail() {
     <>
       <header className="arm-head">
         <div>
-          <p className="arm-kicker">Сегмент · ЦР · первый вход</p>
-          <h3>Не завершили первую операцию</h3>
+          <p className="arm-kicker">Список · новый кошелёк</p>
+          <h3>Не закончили первую операцию</h3>
         </div>
-        <button type="button" className="arm-btn">Открыть очередь сегмента</button>
+        <button type="button" className="arm-btn">Открыть этих людей</button>
       </header>
       <div className="arm-split arm-split--detail">
         <section className="arm-panel">
           <header>
-            <h4>Правило</h4>
-            <span>собирается каждые 5 минут</span>
+            <h4>Почему в списке</h4>
+            <span>обновляется каждые 5 минут</span>
           </header>
           <ol className="arm-rules">
-            <li>Продукт = цифровой рубль</li>
-            <li>Статус кошелька = черновик</li>
-            <li>Первая операция не подтверждена</li>
-            <li>Клиент в приложении за последние 24 часа</li>
+            <li>Продукт — цифровой рубль</li>
+            <li>Кошелёк ещё не открыт</li>
+            <li>Первую операцию не подтвердили</li>
+            <li>Заходили в приложение за сутки</li>
           </ol>
-          <p className="arm-note">Сегмент — это правило работы, не отчёт. Из него сразу берётся очередь.</p>
+          <p className="arm-note">Это не отчёт. Из списка сразу берут человека в работу.</p>
         </section>
         <section className="arm-panel">
           <header>
-            <h4>Сейчас в сегменте</h4>
+            <h4>Сейчас в списке</h4>
             <span>38 · первые 6</span>
           </header>
           <ul className="arm-people">
             {[
               ['Алина К.', 'ждёт подтверждения', '4 мин'],
               ['Павел Н.', 'открыл кошелёк', '11 мин'],
-              ['Мария В.', 'ошибка OTP', '16 мин'],
+              ['Мария В.', 'код из смс не прошёл', '16 мин'],
               ['Игорь Л.', 'вернулся вчера', '22 мин'],
-              ['Елена С.', 'на шаге суммы', '27 мин'],
+              ['Елена С.', 'на шаге с суммой', '27 мин'],
               ['Никита Р.', 'закрыл приложение', '41 мин'],
             ].map((row) => (
               <li key={row[0]}>
@@ -230,20 +230,20 @@ function Queue() {
     <>
       <header className="arm-head">
         <div>
-          <p className="arm-kicker">Очередь смены</p>
+          <p className="arm-kicker">Очередь на сегодня</p>
           <h3>Следующий клиент уже выбран</h3>
         </div>
         <div className="arm-head-meta">
-          <span className="arm-pill">Приоритет: риск + срок</span>
+          <span className="arm-pill">Сначала срочное</span>
         </div>
       </header>
       <ul className="arm-queue">
         {[
-          ['сейчас', 'Мария В.', 'ЦР · первый вход', 'Ошибка OTP', 'высокая'],
-          ['далее', 'Павел Н.', 'Посредник · зависли', 'Проверка 21 мин', 'высокая'],
-          ['3', 'Алина К.', 'ЦР · первый вход', 'Ждёт подтверждения', 'средняя'],
-          ['4', 'Олег Т.', 'Мобильный оператор', 'Нет OTP', 'средняя'],
-          ['5', 'Игорь Л.', 'Возврат в очередь', 'Вчера, шаг суммы', 'низкая'],
+          ['сейчас', 'Мария В.', 'Новый кошелёк', 'Код из смс не прошёл', 'срочно'],
+          ['далее', 'Павел Н.', 'Застряли на проверке', 'Ждёт 21 минуту', 'срочно'],
+          ['3', 'Алина К.', 'Новый кошелёк', 'Ждёт подтверждения', 'обычное'],
+          ['4', 'Олег Т.', 'Смена тарифа', 'Нет кода из смс', 'обычное'],
+          ['5', 'Игорь Л.', 'Вчера не доделали', 'Остановились на сумме', 'можно позже'],
         ].map((row) => (
           <li key={row[1]} className={row[0] === 'сейчас' ? 'is-now' : undefined}>
             <em>{row[0]}</em>
@@ -265,19 +265,19 @@ function Operation() {
     <>
       <header className="arm-head">
         <div>
-          <p className="arm-kicker">Операция ОР-1842 · цифровой рубль</p>
+          <p className="arm-kicker">Операция 1842 · цифровой рубль</p>
           <h3>Мария В. · подтвердить первую операцию</h3>
         </div>
         <div className="arm-head-meta">
           <button type="button" className="arm-btn arm-btn--ghost">Вернуть</button>
-          <button type="button" className="arm-btn">Закрыть</button>
+          <button type="button" className="arm-btn">Готово</button>
         </div>
       </header>
       <div className="arm-split arm-split--op">
         <section className="arm-panel">
           <ol className="arm-steps">
             <li className="is-done">Клиент и продукт</li>
-            <li className="is-on">Проверка OTP и суммы</li>
+            <li className="is-on">Проверка кода и суммы</li>
             <li>Подтверждение</li>
           </ol>
           <dl className="arm-facts">
@@ -287,28 +287,28 @@ function Operation() {
             </div>
             <div>
               <dt>Кошелёк</dt>
-              <dd>Черновик · ЦР</dd>
+              <dd>Ещё не открыт</dd>
             </div>
             <div>
-              <dt>OTP</dt>
+              <dt>Код из смс</dt>
               <dd className="is-warn">Не прошёл, 2 попытки</dd>
             </div>
             <div>
-              <dt>Канал</dt>
+              <dt>Откуда</dt>
               <dd>Приложение</dd>
             </div>
           </dl>
-          <p className="arm-note">Клиент, сумма и статус на одном экране. Новое окно не открывается.</p>
+          <p className="arm-note">Имя, сумма и статус на одном экране. Новое окно не открывается.</p>
         </section>
         <section className="arm-panel">
           <header>
             <h4>Что сделать</h4>
-            <span>подсказка сценария</span>
+            <span>короткая подсказка</span>
           </header>
           <ul className="arm-actions">
             <li>Попросить клиента запросить новый код.</li>
-            <li>Не менять сумму — черновик уже согласован.</li>
-            <li>Если третий отказ — эскалация, не новый черновик.</li>
+            <li>Сумму не менять — она уже согласована.</li>
+            <li>Если код не пройдёт третий раз — передать старшему, не начинать заново.</li>
           </ul>
         </section>
       </div>
@@ -321,52 +321,52 @@ function Shift() {
     <>
       <header className="arm-head">
         <div>
-          <p className="arm-kicker">Итог смены · 12 марта</p>
-          <h3>Закрыли 42, вернули 3, эскалировали 3</h3>
+          <p className="arm-kicker">Итог дня · 12 марта</p>
+          <h3>Сделали 42, вернули 3, передали старшему 3</h3>
         </div>
       </header>
       <div className="arm-kpi">
         <article>
           <strong>42</strong>
-          <span>Закрыто</span>
+          <span>Сделано</span>
         </article>
         <article>
           <strong>6%</strong>
-          <span>Возврат в очередь</span>
+          <span>Начали заново</span>
         </article>
         <article>
           <strong>11</strong>
           <em>мин</em>
-          <span>Медиана</span>
+          <span>На одну операцию</span>
         </article>
         <article>
           <strong>94%</strong>
-          <span>Без эскалации</span>
+          <span>Сами довели до конца</span>
         </article>
       </div>
       <section className="arm-panel">
         <header>
-          <h4>Откуда пришла работа</h4>
-          <span>не из сырого списка заявок</span>
+          <h4>Откуда пришли дела</h4>
+          <span>не из общей кучи заявок</span>
         </header>
         <ul className="arm-origin">
           <li>
-            <b>ЦР · первый вход</b>
+            <b>Новый кошелёк</b>
             <i style={{ width: '46%' }} />
             <em>19</em>
           </li>
           <li>
-            <b>Посредник</b>
+            <b>Проверка</b>
             <i style={{ width: '28%' }} />
             <em>12</em>
           </li>
           <li>
-            <b>Мобильный оператор</b>
+            <b>Смена тарифа</b>
             <i style={{ width: '18%' }} />
             <em>8</em>
           </li>
           <li>
-            <b>Возврат</b>
+            <b>Вчерашние</b>
             <i style={{ width: '8%' }} />
             <em>3</em>
           </li>
@@ -449,7 +449,7 @@ export function ArmDesktop({
         <aside className="arm-side">
           <p className="arm-logo">
             <Mark />
-            Норд
+            АРМ
           </p>
           <nav>
             {nav.map((item) => (
