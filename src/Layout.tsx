@@ -19,8 +19,50 @@ function useTheme(): [Theme, () => void] {
   return [theme, toggle]
 }
 
+function useHeaderMotion() {
+  const [hidden, setHidden] = useState(false)
+  const [expanded, setExpanded] = useState(false)
+
+  useEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let lastY = window.scrollY
+    let ticking = false
+
+    const apply = () => {
+      ticking = false
+      const y = window.scrollY
+      const delta = y - lastY
+
+      if (y < 12) {
+        setHidden(false)
+        setExpanded(false)
+      } else if (!reduce && delta > 8) {
+        setHidden(true)
+        setExpanded(false)
+      } else if (!reduce && delta < -8) {
+        setHidden(false)
+        setExpanded(true)
+      }
+
+      lastY = y
+    }
+
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(apply)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  return { hidden, expanded }
+}
+
 function Layout() {
   const [theme, toggleTheme] = useTheme()
+  const { hidden, expanded } = useHeaderMotion()
   const navigate = useNavigate()
   const location = useLocation()
   const year = useMemo(() => new Date().getFullYear(), [])
@@ -37,36 +79,48 @@ function Layout() {
     }
   }
 
+  const headerClass = [
+    'site-bar',
+    hidden ? 'is-hidden' : '',
+    expanded ? 'is-expanded' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <div className="page">
-      <header className="nav">
-        <Link className="brand" to="/">
-          <span className="brand-mark" aria-hidden="true">✳</span>
-          Любовь
-        </Link>
-        <nav className="nav-links">
-          <button type="button" onClick={() => goToSection('work')}>Работы</button>
-          <button type="button" onClick={() => goToSection('experience')}>Опыт</button>
-          <button type="button" onClick={() => goToSection('contacts')}>Контакты</button>
-        </nav>
-        <button
-          type="button"
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label="Переключить тему"
-        >
-          {theme === 'dark' ? '☀︎ Светлая' : '☾ Тёмная'}
-        </button>
+    <div className="shell">
+      <header className={headerClass}>
+        <div className="site-bar-inner">
+          <Link className="brand" to="/">
+            <span className="brand-mark" aria-hidden="true">✳</span>
+            Любовь
+          </Link>
+          <nav className="nav-links">
+            <button type="button" onClick={() => goToSection('work')}>Работы</button>
+            <button type="button" onClick={() => goToSection('experience')}>Опыт</button>
+            <button type="button" onClick={() => goToSection('contacts')}>Контакты</button>
+          </nav>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Переключить тему"
+          >
+            {theme === 'dark' ? '☀︎ Светлая' : '☾ Тёмная'}
+          </button>
+        </div>
       </header>
 
-      <main>
-        <Outlet />
-      </main>
+      <div className="page">
+        <main>
+          <Outlet />
+        </main>
 
-      <footer className="footer">
-        <span>© {year} Любовь Чуйко</span>
-        <span>UX/UI · продуктовый дизайн · финтех</span>
-      </footer>
+        <footer className="footer">
+          <span>© {year} Любовь Чуйко</span>
+          <span>UX/UI · продуктовый дизайн · финтех</span>
+        </footer>
+      </div>
     </div>
   )
 }

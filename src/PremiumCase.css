@@ -15,7 +15,7 @@
 
 .story-toc {
   position: sticky;
-  top: 5.4rem;
+  top: 5.8rem;
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
@@ -48,7 +48,7 @@
 .story-section {
   padding-block: 3.2rem;
   border-top: 1px solid var(--border);
-  scroll-margin-top: 5.4rem;
+  scroll-margin-top: 5.8rem;
 }
 
 .story-section:first-child {

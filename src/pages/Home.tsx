@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import { ArmDesktop } from '../components/ArmScreens'
+import '../ArmCase.css'
 
 const asset = (p: string) => `${import.meta.env.BASE_URL}${p}`
 
@@ -108,6 +110,21 @@ function Home() {
               <p>{item.subtitle}</p>
             </Link>
           ))}
+          <Link className="project-card project-card--link project-card--wide" to="/case/web-arm">
+            <div className="project-thumb project-thumb--cover project-thumb--wide">
+              <div className="arm-cover">
+                <div className="arm-frame arm-frame--cover">
+                  <div className="arm-frame-inner">
+                    <ArmDesktop screen="overview" compact />
+                  </div>
+                </div>
+              </div>
+              <span className="project-year">2024</span>
+              <span className="project-badge">Открыть кейс →</span>
+            </div>
+            <h3>Веб-АРМ</h3>
+            <p>Сегменты клиентов и очередь операций</p>
+          </Link>
         </div>
       </section>
 
