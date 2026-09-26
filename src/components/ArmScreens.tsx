@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react'
+
 export type ArmScreenId =
   | 'overview'
   | 'segments'
@@ -381,6 +383,51 @@ function ScreenBody({ screen }: { screen: ArmScreenId }) {
   if (screen === 'queue') return <Queue />
   if (screen === 'operation') return <Operation />
   return <Shift />
+}
+
+const DESK_W = 1080
+const DESK_H = 700
+
+export function ArmFrame({
+  screen,
+  compact = false,
+}: {
+  screen: ArmScreenId
+  compact?: boolean
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [width, setWidth] = useState(0)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const update = () => setWidth(el.clientWidth)
+    update()
+    const observer = new ResizeObserver(update)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const scale = width > 0 ? width / DESK_W : 0
+
+  return (
+    <div
+      ref={ref}
+      className="arm-frame"
+      style={{ height: scale ? DESK_H * scale : undefined }}
+    >
+      <div
+        className="arm-frame-inner"
+        style={{
+          width: DESK_W,
+          transform: `scale(${scale || 1})`,
+          visibility: scale ? 'visible' : 'hidden',
+        }}
+      >
+        <ArmDesktop screen={screen} compact={compact} />
+      </div>
+    </div>
+  )
 }
 
 export function ArmDesktop({

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ArmDesktop, type ArmScreenId } from '../components/ArmScreens'
+import { ArmFrame, type ArmScreenId } from '../components/ArmScreens'
 import '../CaseStudy.css'
 import '../PremiumCase.css'
 import '../ArmCase.css'
@@ -106,19 +106,13 @@ function Icon({ name }: { name: 'pulse' | 'people' | 'scope' }) {
 function Desk({
   screen,
   caption,
-  tall = 'gallery',
 }: {
   screen: ArmScreenId
   caption?: string
-  tall?: 'hero' | 'scene' | 'gallery'
 }) {
   return (
     <figure className="arm-shot">
-      <div className={`arm-frame arm-frame--${tall}`}>
-        <div className="arm-frame-inner">
-          <ArmDesktop screen={screen} />
-        </div>
-      </div>
+      <ArmFrame screen={screen} />
       {caption && <figcaption>{caption}</figcaption>}
     </figure>
   )
@@ -166,7 +160,7 @@ function ScenarioStage() {
         })}
       </ol>
       <figure className="scene-preview">
-        <Desk key={current.screen} screen={current.screen} tall="scene" />
+        <Desk key={current.screen} screen={current.screen} />
       </figure>
     </div>
   )
@@ -263,11 +257,7 @@ function ArmCase() {
             <h2 className="story-title">О проекте</h2>
             <div className="about-board">
               <figure className="about-visual about-visual--arm">
-                <div className="arm-frame arm-frame--hero">
-                  <div className="arm-frame-inner">
-                    <ArmDesktop screen="overview" />
-                  </div>
-                </div>
+                <ArmFrame screen="overview" />
                 <figcaption>
                   Собирала веб-АРМ для операционной смены. Задача — провести
                   человека от правила сегмента до закрытой операции, не прыгая
@@ -298,14 +288,14 @@ function ArmCase() {
             <h2 className="story-title">Сделала</h2>
             <p className="story-sub">экран сегментов — правила, из которых берётся очередь</p>
             <div className="made-stage made-stage--desk">
-              <Desk screen="segments" tall="hero" />
+              <Desk screen="segments" />
             </div>
           </section>
 
           <section id="crafted" className="story-section">
             <h2 className="story-title">Проработала</h2>
             <p className="story-sub">смена, карточка сегмента, очередь, операция и итог</p>
-            <div className="story-phones story-phones--desk">
+            <div className="arm-gallery">
               {crafted.map((shot) => (
                 <Desk key={shot.screen} screen={shot.screen} caption={shot.caption} />
               ))}

@@ -113,11 +113,7 @@ function Home() {
           <Link className="project-card project-card--link project-card--wide" to="/case/web-arm">
             <div className="project-thumb project-thumb--cover project-thumb--wide">
               <div className="arm-cover">
-                <div className="arm-frame arm-frame--cover">
-                  <div className="arm-frame-inner">
-                    <ArmDesktop screen="overview" compact />
-                  </div>
-                </div>
+                <ArmDesktop screen="overview" compact />
               </div>
               <span className="project-year">2024</span>
               <span className="project-badge">Открыть кейс →</span>

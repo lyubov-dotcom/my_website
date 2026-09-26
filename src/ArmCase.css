@@ -50,9 +50,10 @@
   background: #161410;
 }
 
-.story-phones--desk {
-  grid-template-columns: 1fr;
-  max-width: none;
+.arm-gallery {
+  display: grid;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .arm-shot {
@@ -67,7 +68,6 @@
 }
 
 .arm-frame {
-  container-type: inline-size;
   width: 100%;
   overflow: hidden;
   border-radius: 18px;
@@ -76,21 +76,7 @@
 }
 
 .arm-frame-inner {
-  width: 1080px;
-  transform: scale(calc(100cqi / 1080));
   transform-origin: top left;
-}
-
-.arm-frame--hero {
-  height: calc(720px * 100cqi / 1080);
-}
-
-.arm-frame--scene {
-  height: calc(700px * 100cqi / 1080);
-}
-
-.arm-frame--gallery {
-  height: calc(680px * 100cqi / 1080);
 }
 
 .arm-desk {
@@ -618,21 +604,21 @@
 }
 
 .about-visual--arm .arm-frame {
-  height: 100%;
-  min-height: 360px;
   border: none;
   border-radius: 0;
+  min-height: 360px;
 }
 
-.project-thumb--wide .arm-cover {
+.arm-cover {
   position: absolute;
-  inset: 10% 5% auto;
-  width: 90%;
+  top: 10%;
+  left: 5%;
+  width: 1080px;
+  transform: scale(0.78);
+  transform-origin: top left;
   pointer-events: none;
-}
-
-.project-thumb--wide .arm-frame--cover {
-  height: calc(680px * 100cqi / 1080);
+  border-radius: 12px;
+  overflow: hidden;
   box-shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.55);
 }
 
