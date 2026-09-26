@@ -322,9 +322,7 @@ section {
 
 .project-thumb--wide {
   aspect-ratio: 16 / 7;
-  background:
-    radial-gradient(800px 280px at 80% 0%, rgba(141, 212, 192, 0.28), transparent),
-    #16332c;
+  background: #f4f8f8;
 }
 
 .project-card h3 {
