@@ -120,7 +120,7 @@ function Home() {
               <span className="project-badge">Открыть кейс →</span>
             </div>
             <h3>FUN&SUN</h3>
-            <p>Посадочная, где тур подбирает эксперт, а не каталог</p>
+            <p>Посадочная страница подбора тура</p>
           </Link>
         </div>
       </section>
