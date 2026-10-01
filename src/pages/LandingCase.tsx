@@ -52,20 +52,19 @@ const screens = [
   },
 ]
 
-const insights = [
+const conversion = {
+  value: '2.1% → 6.8%',
+  label: 'конверсия в заявку (CR)',
+  text: 'Выросла после запуска лендинга. Смотрела обычный месяц, не лучшую неделю.',
+}
+
+const takeaways = [
   {
-    value: '2.1% → 6.8%',
-    label: 'конверсия в заявку (CR)',
-    text: 'Выросла после запуска лендинга. Смотрела обычный месяц, не лучшую неделю.',
-  },
-  {
-    value: 'Форма сразу',
-    label: 'что повлияло',
+    title: 'Что повлияло',
     text: 'Упростили форму — убрали лишние поля — и поставили её на первый экран.',
   },
   {
-    value: 'Нижняя форма',
-    label: 'анализ форм',
+    title: 'Анализ форм',
     text: 'Самая высокая конверсия у нижней формы в блоке «Просто оставьте заявку»: к этому моменту пользователь уже прогрет контентом.',
   },
 ]
@@ -104,8 +103,6 @@ function LandingCase() {
         <h1>FUN&SUN</h1>
         <p className="lede">
           Посадочная страница для сбора заявок на индивидуальный подбор тура.
-          Не каталог: клиент оставляет контакты, а менеджер вручную подбирает
-          идеальное путешествие.
         </p>
         <ul className="case-chips">
           {chips.map((item) => (
@@ -142,15 +139,11 @@ function LandingCase() {
 
       <section className="land-block">
         <h2>Аналитика</h2>
-        <ul className="land-insights">
-          {insights.map((item) => (
-            <li key={item.label}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-              <p>{item.text}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="land-metric">
+          <strong>{conversion.value}</strong>
+          <span>{conversion.label}</span>
+          <p>{conversion.text}</p>
+        </div>
       </section>
 
       <section className="land-block">
@@ -161,6 +154,14 @@ function LandingCase() {
           ценности услуги. Дизайн не только радует глаз, но и напрямую влияет
           на бизнес-показатели клиента.
         </p>
+        <dl className="land-takeaways">
+          {takeaways.map((item) => (
+            <div key={item.title}>
+              <dt>{item.title}</dt>
+              <dd>{item.text}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
     </article>
   )
