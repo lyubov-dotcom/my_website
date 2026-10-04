@@ -74,20 +74,19 @@ function Home() {
     <>
       <section id="top" className="hero-splash">
         <div className="hero-splash-copy">
-          <p className="hero-splash-kicker">Welcome to a new version of you</p>
+          <p className="hero-splash-kicker">UX/UI · финтех</p>
           <h1 className="hero-splash-title">
-            <span>A vision</span>
-            <span>of future</span>
-            <span>augmentation</span>
+            <span>Всё</span>
+            <span>логично</span>
           </h1>
           <p className="hero-splash-lede">
-            Future where carbon fiber, titanium, and intuition coexist. Not
-            machine, not man. Something beautifully in between.
+            Интерфейсы, в которых всё логично. Слушаю пользователей, слышу команду
+            и уже 5 лет собираю продукты, которым удобно доверять.
           </p>
           <button type="button" className="hero-splash-cta" onClick={() => {
-            document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' })
+            document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
           }}>
-            Book a call
+            Мои работы
           </button>
         </div>
         <HeroAvatar />
