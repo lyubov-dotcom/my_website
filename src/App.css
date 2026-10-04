@@ -206,10 +206,6 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 0;
   font-family: Inter, system-ui, sans-serif;
   font-weight: 800;
@@ -219,6 +215,24 @@ body {
   text-transform: uppercase;
   color: #fff;
   pointer-events: none;
+}
+
+.hero-splash-title span {
+  position: absolute;
+  left: 50%;
+  display: block;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.hero-splash-title span:first-child {
+  top: 11vh;
+  font-size: 1.18em;
+  letter-spacing: 0.08em;
+}
+
+.hero-splash-title span:last-child {
+  top: 52vh;
 }
 
 .hero-splash-kicker,
@@ -638,7 +652,17 @@ section {
   }
 
   .hero-splash-title {
-    font-size: clamp(4rem, 24vw, 7.4rem);
+    font-size: clamp(4.4rem, 28vw, 8rem);
+  }
+
+  .hero-splash-title span:first-child {
+    top: 5.6rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-splash-title span:last-child {
+    top: auto;
+    bottom: 5.2rem;
   }
 
   .hero-splash-kicker,
