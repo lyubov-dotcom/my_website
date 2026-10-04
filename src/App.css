@@ -87,8 +87,7 @@ body {
   background: transparent;
   border-bottom-color: transparent;
   color: #fff;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 1;
 }
 
 .site-bar.is-over-hero .nav-links,
@@ -199,28 +198,63 @@ body {
   min-height: 100dvh;
   height: 100dvh;
   padding: 0;
-  background: #e30613;
+  background: #cf4f0e;
   color: #fff;
   overflow: hidden;
 }
 
-.hero-splash-title {
+.hero-splash-copy {
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  z-index: 2;
+  left: max(1.6rem, calc(50% - 38rem));
+  top: 50%;
+  width: min(28rem, 40vw);
+  transform: translateY(-46%);
+}
+
+.hero-splash-kicker {
+  margin: 0 0 1.1rem;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.hero-splash-title {
   margin: 0;
   font-family: Inter, system-ui, sans-serif;
-  font-weight: 800;
-  font-size: clamp(5rem, 19.4vw, 15rem);
-  line-height: 0.82;
-  letter-spacing: -0.05em;
-  text-transform: uppercase;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 5.2vw, 4.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
   color: #fff;
-  pointer-events: none;
+}
+
+.hero-splash-title span {
+  display: block;
+}
+
+.hero-splash-lede {
+  margin: 1.4rem 0 0;
+  max-width: 16rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-splash-cta {
+  cursor: pointer;
+  margin-top: 2.4rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.72rem 1.15rem;
+  background: #fff;
+  color: #1a120e;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .eyebrow {
@@ -605,8 +639,20 @@ section {
     justify-self: stretch;
   }
 
+  .hero-splash-copy {
+    left: 1.2rem;
+    right: 1.2rem;
+    top: 5.6rem;
+    width: auto;
+    transform: none;
+  }
+
   .hero-splash-title {
-    font-size: clamp(3.6rem, 22vw, 7.2rem);
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+  }
+
+  .hero-splash-lede {
+    max-width: 18rem;
   }
 }
 

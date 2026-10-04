@@ -73,10 +73,23 @@ function Home() {
   return (
     <>
       <section id="top" className="hero-splash">
-        <h1 className="hero-splash-title">
-          <span>Create</span>
-          <span>Daily</span>
-        </h1>
+        <div className="hero-splash-copy">
+          <p className="hero-splash-kicker">Welcome to a new version of you</p>
+          <h1 className="hero-splash-title">
+            <span>A vision</span>
+            <span>of future</span>
+            <span>augmentation</span>
+          </h1>
+          <p className="hero-splash-lede">
+            Future where carbon fiber, titanium, and intuition coexist. Not
+            machine, not man. Something beautifully in between.
+          </p>
+          <button type="button" className="hero-splash-cta" onClick={() => {
+            document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' })
+          }}>
+            Book a call
+          </button>
+        </div>
         <HeroAvatar />
       </section>
 
