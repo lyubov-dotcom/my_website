@@ -91,7 +91,8 @@ body {
 }
 
 .site-bar.is-over-hero .nav-links,
-.site-bar.is-over-hero .brand {
+.site-bar.is-over-hero .brand,
+.site-bar.is-over-hero .nav-links button:hover {
   color: #fff;
 }
 
@@ -105,9 +106,13 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.site-bar-inner {
-  width: min(1100px, 100% - 3rem);
+.site-bar-inner,
+.hero-splash-copy {
+  width: min(1100px, calc(100% - 3rem));
   margin-inline: auto;
+}
+
+.site-bar-inner {
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -198,61 +203,46 @@ body {
   min-height: 100dvh;
   height: 100dvh;
   padding: 0;
-  background: #cf4f0e;
+  background: #c64a0c;
   color: #fff;
   overflow: hidden;
 }
 
 .hero-splash-copy {
   position: absolute;
-  z-index: 2;
-  left: max(1.6rem, calc(50% - 38rem));
+  left: 0;
+  right: 0;
   top: 50%;
-  width: min(28rem, 40vw);
-  transform: translateY(-46%);
+  z-index: 2;
+  transform: translateY(-42%);
 }
 
-.hero-splash-kicker {
-  margin: 0 0 1.1rem;
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.01em;
+.hero-splash .eyebrow {
   color: rgba(255, 255, 255, 0.78);
 }
 
-.hero-splash-title {
-  margin: 0;
-  font-family: Inter, system-ui, sans-serif;
-  font-weight: 600;
-  font-size: clamp(3rem, 6vw, 5.2rem);
-  line-height: 0.96;
-  letter-spacing: -0.04em;
+.hero-splash h1 {
+  max-width: 38rem;
   color: #fff;
 }
 
-.hero-splash-title span {
-  display: block;
+.hero-splash .accent {
+  color: #ffe7c2;
 }
 
-.hero-splash-lede {
-  margin: 1.4rem 0 0;
-  max-width: 22rem;
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.82);
+.hero-splash .lede {
+  color: rgba(255, 255, 255, 0.84);
+  max-width: 38rem;
 }
 
-.hero-splash-cta {
-  cursor: pointer;
-  margin-top: 2.2rem;
-  border: 0;
-  border-radius: 999px;
-  padding: 0.78rem 1.25rem;
+.hero-splash .btn-primary {
   background: #fff;
   color: #1a120e;
-  font: inherit;
-  font-size: 0.88rem;
-  font-weight: 600;
+  box-shadow: none;
+}
+
+.hero-splash .btn-primary:hover {
+  box-shadow: none;
 }
 
 .eyebrow {
@@ -638,19 +628,17 @@ section {
   }
 
   .hero-splash-copy {
-    left: 1.2rem;
-    right: 1.2rem;
-    top: 5.6rem;
-    width: auto;
+    top: 5.4rem;
     transform: none;
   }
 
-  .hero-splash-title {
-    font-size: clamp(2.2rem, 9vw, 3.2rem);
+  .hero-splash h1 {
+    font-size: clamp(2.1rem, 8vw, 3.2rem);
   }
 
-  .hero-splash-lede {
-    max-width: 18rem;
+  .hero-splash .lede {
+    font-size: 1rem;
+    max-width: 34rem;
   }
 }
 

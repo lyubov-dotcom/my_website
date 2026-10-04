@@ -74,20 +74,28 @@ function Home() {
     <>
       <section id="top" className="hero-splash">
         <div className="hero-splash-copy">
-          <p className="hero-splash-kicker">UX/UI · финтех</p>
-          <h1 className="hero-splash-title">
-            <span>Всё</span>
-            <span>логично</span>
+          <p className="eyebrow">UX/UI · продуктовый дизайнер · финтех</p>
+          <h1>
+            Интерфейсы, в которых
+            <br />
+            всё <span className="accent">логично</span>
           </h1>
-          <p className="hero-splash-lede">
-            Интерфейсы, в которых всё логично. Слушаю пользователей, слышу команду
-            и уже 5 лет собираю продукты, которым удобно доверять.
+          <p className="lede">
+            Я UX/UI-дизайнер с инженерным бэкграундом. Мой опыт позволяет видеть
+            систему целиком, разбираться в сложных механизмах и не упускать детали.
+            Слушаю пользователей, слышу команду и уже 5 лет создаю продукты,
+            которым удобно доверять. Сейчас работаю над интерфейсами для банковской
+            сферы.
           </p>
-          <button type="button" className="hero-splash-cta" onClick={() => {
-            document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
-          }}>
-            Мои работы
-          </button>
+          <div className="hero-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              Мои работы
+            </button>
+          </div>
         </div>
         <HeroAvatar />
       </section>
