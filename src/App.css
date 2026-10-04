@@ -35,7 +35,25 @@ body {
   padding-top: 4.6rem;
 }
 
+.shell--home {
+  padding-top: 0;
+}
+
 .page {
+  width: min(1100px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.shell--home .page {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.shell--home .work,
+.shell--home .experience,
+.shell--home .contacts,
+.shell--home .footer {
   width: min(1100px, 100% - 3rem);
   margin-inline: auto;
 }
@@ -63,6 +81,27 @@ body {
 
 .site-bar.is-expanded {
   padding-block: 1.2rem;
+}
+
+.site-bar.is-over-hero {
+  background: transparent;
+  border-bottom-color: transparent;
+  color: #fff;
+}
+
+.site-bar.is-over-hero .nav-links,
+.site-bar.is-over-hero .brand {
+  color: #fff;
+}
+
+.site-bar.is-over-hero .brand-mark {
+  color: #fff;
+}
+
+.site-bar.is-over-hero .theme-toggle {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .site-bar-inner {
@@ -151,6 +190,69 @@ body {
 
 .hero-copy {
   max-width: 38rem;
+}
+
+.hero-splash {
+  position: relative;
+  min-height: 100dvh;
+  height: 100dvh;
+  padding: 0;
+  background: #e21820;
+  color: #fff;
+  overflow: hidden;
+}
+
+.hero-splash-title {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(5.2rem, 18vw, 14.2rem);
+  line-height: 0.78;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  pointer-events: none;
+}
+
+.hero-splash-kicker,
+.hero-splash-side {
+  position: absolute;
+  z-index: 3;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: #fff;
+}
+
+.hero-splash-kicker {
+  top: 6.2rem;
+  left: max(1.4rem, calc(50% - 38rem));
+}
+
+.hero-splash-side {
+  top: 6.2rem;
+  right: max(1.4rem, calc(50% - 38rem));
+}
+
+.hero-splash-lede {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 1.6rem;
+  width: min(34rem, calc(100% - 2.4rem));
+  transform: translateX(-50%);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
 }
 
 .eyebrow {
@@ -533,6 +635,26 @@ section {
   .hero-copy {
     max-width: 40rem;
     justify-self: stretch;
+  }
+
+  .hero-splash-title {
+    font-size: clamp(4rem, 24vw, 7.4rem);
+  }
+
+  .hero-splash-kicker,
+  .hero-splash-side {
+    top: 5.1rem;
+    left: 1.2rem;
+    right: auto;
+  }
+
+  .hero-splash-side {
+    left: auto;
+    right: 1.2rem;
+  }
+
+  .hero-splash-lede {
+    font-size: 0.84rem;
   }
 }
 

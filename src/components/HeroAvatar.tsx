@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import '../HeroAvatar.css'
 
 const photo = `${import.meta.env.BASE_URL}avatar/lyubov-3d-left.webp`
-const blueprint = `${import.meta.env.BASE_URL}avatar/lyubov-3d-left-blueprint.webp`
+const metal = `${import.meta.env.BASE_URL}avatar/lyubov-3d-metal.webp`
 
 function HeroAvatar() {
   const stageRef = useRef<HTMLDivElement>(null)
@@ -24,12 +24,15 @@ function HeroAvatar() {
 
     if (reduce) return
 
+    const splash = stage.closest('.hero-splash') as HTMLElement | null
+    const surface = splash ?? stage
+
     if (mobile.matches) {
       const started = performance.now()
       let frame = 0
       const tick = (now: number) => {
         const t = (now - started) / 1000
-        setPos(50 + Math.sin(t * 0.65) * 26, 40 + Math.cos(t * 0.48) * 14, true)
+        setPos(50 + Math.sin(t * 0.5) * 24, 40 + Math.cos(t * 0.38) * 18, true)
         frame = window.requestAnimationFrame(tick)
       }
       frame = window.requestAnimationFrame(tick)
@@ -44,26 +47,24 @@ function HeroAvatar() {
     }
     const onLeave = () => stage.classList.remove('is-hot')
 
-    stage.addEventListener('pointerenter', onMove)
-    stage.addEventListener('pointermove', onMove)
-    stage.addEventListener('pointerleave', onLeave)
+    surface.addEventListener('pointerenter', onMove)
+    surface.addEventListener('pointermove', onMove)
+    surface.addEventListener('pointerleave', onLeave)
     return () => {
-      stage.removeEventListener('pointerenter', onMove)
-      stage.removeEventListener('pointermove', onMove)
-      stage.removeEventListener('pointerleave', onLeave)
+      surface.removeEventListener('pointerenter', onMove)
+      surface.removeEventListener('pointermove', onMove)
+      surface.removeEventListener('pointerleave', onLeave)
     }
   }, [])
 
   return (
-    <div className="hero-avatar-stage" ref={stageRef}>
+    <div className="hero-avatar-stage hero-avatar-stage--splash" ref={stageRef}>
       <div className="hero-avatar-rig">
         <img className="hero-avatar-photo" src={photo} alt="Любовь Чуйко" />
-        <div className="hero-avatar-blueprint" ref={layerRef} aria-hidden="true">
-          <img src={blueprint} alt="" />
-          <span className="hero-avatar-lens" />
+        <div className="hero-avatar-metal" ref={layerRef} aria-hidden="true">
+          <img src={metal} alt="" />
         </div>
       </div>
-      <div className="hero-avatar-shadow" aria-hidden="true" />
     </div>
   )
 }

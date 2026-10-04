@@ -66,6 +66,8 @@ function Layout() {
   const navigate = useNavigate()
   const location = useLocation()
   const year = useMemo(() => new Date().getFullYear(), [])
+  const isHome = location.pathname === '/'
+  const [overHero, setOverHero] = useState(isHome)
 
   const goToSection = (id: string) => {
     const scroll = () => {
@@ -79,16 +81,37 @@ function Layout() {
     }
   }
 
+  useEffect(() => {
+    if (!isHome) {
+      setOverHero(false)
+      return
+    }
+
+    const hero = document.getElementById('top')
+    if (!hero) {
+      setOverHero(true)
+      return
+    }
+
+    const io = new IntersectionObserver(
+      ([entry]) => setOverHero(entry.isIntersecting && entry.intersectionRatio > 0.45),
+      { threshold: [0.45, 0.7] },
+    )
+    io.observe(hero)
+    return () => io.disconnect()
+  }, [isHome])
+
   const headerClass = [
     'site-bar',
-    hidden ? 'is-hidden' : '',
+    hidden && !overHero ? 'is-hidden' : '',
     expanded ? 'is-expanded' : '',
+    overHero ? 'is-over-hero' : '',
   ]
     .filter(Boolean)
     .join(' ')
 
   return (
-    <div className="shell">
+    <div className={isHome ? 'shell shell--home' : 'shell'}>
       <header className={headerClass}>
         <div className="site-bar-inner">
           <Link className="brand" to="/">
