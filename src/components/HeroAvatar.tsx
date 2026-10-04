@@ -1,6 +1,6 @@
 import '../HeroAvatar.css'
 
-const photo = `${import.meta.env.BASE_URL}avatar/lyubov-same-smile.webp`
+const photo = `${import.meta.env.BASE_URL}avatar/lyubov-closed-smile.webp`
 
 function HeroAvatar() {
   return (
