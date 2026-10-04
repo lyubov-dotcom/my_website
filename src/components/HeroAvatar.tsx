@@ -38,14 +38,14 @@ function HeroAvatar() {
     let frame = 0
 
     const apply = (x: number, y: number) => {
-      const left = x < 0 ? -x : 0
-      const right = x > 0 ? x : 0
-      const front = 1 - Math.abs(x)
+      const left = clamp((-x - 0.16) / 0.28, 0, 1)
+      const right = clamp((x - 0.16) / 0.28, 0, 1)
+      const front = Math.max(0, 1 - left - right)
       if (leftRef.current) leftRef.current.style.opacity = left.toFixed(3)
       if (frontRef.current) frontRef.current.style.opacity = front.toFixed(3)
       if (rightRef.current) rightRef.current.style.opacity = right.toFixed(3)
       if (wireRef.current) {
-        wireRef.current.style.opacity = Math.max(0, 0.42 - Math.abs(x) * 0.35).toFixed(3)
+        wireRef.current.style.opacity = (0.7 * front).toFixed(3)
       }
       if (rigRef.current) {
         rigRef.current.style.transform = `rotateX(${(-y * 8).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg)`

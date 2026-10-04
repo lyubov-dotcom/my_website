@@ -64,10 +64,10 @@
 }
 
 .hero-avatar-view.is-wire {
-  opacity: 0.38;
-  mix-blend-mode: screen;
-  -webkit-mask-image: linear-gradient(to right, #000 0 44%, transparent 56%);
-  mask-image: linear-gradient(to right, #000 0 44%, transparent 56%);
+  opacity: 0.7;
+  mix-blend-mode: normal;
+  -webkit-mask-image: linear-gradient(to right, #000 0 40%, transparent 51%);
+  mask-image: linear-gradient(to right, #000 0 40%, transparent 51%);
 }
 
 :root[data-theme='light'] .hero-avatar-view.is-wire {
