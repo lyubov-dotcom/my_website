@@ -73,17 +73,11 @@ function Home() {
   return (
     <>
       <section id="top" className="hero-splash">
-        <p className="hero-splash-kicker">UX/UI · финтех</p>
         <h1 className="hero-splash-title">
-          <span>Всё</span>
-          <span>логично</span>
+          <span>Create</span>
+          <span>Daily</span>
         </h1>
-        <p className="hero-splash-side">продуктовый дизайнер</p>
         <HeroAvatar />
-        <p className="hero-splash-lede">
-          Интерфейсы, в которых всё логично. Слушаю пользователей, слышу команду
-          и уже 5 лет собираю продукты, которым удобно доверять.
-        </p>
       </section>
 
       <section id="work" className="work">

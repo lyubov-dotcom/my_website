@@ -87,6 +87,8 @@ body {
   background: transparent;
   border-bottom-color: transparent;
   color: #fff;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .site-bar.is-over-hero .nav-links,
@@ -197,7 +199,7 @@ body {
   min-height: 100dvh;
   height: 100dvh;
   padding: 0;
-  background: #e21820;
+  background: #e30613;
   color: #fff;
   overflow: hidden;
 }
@@ -206,67 +208,19 @@ body {
   position: absolute;
   inset: 0;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   font-family: Inter, system-ui, sans-serif;
   font-weight: 800;
-  font-size: clamp(5.2rem, 18vw, 14.2rem);
-  line-height: 0.78;
-  letter-spacing: -0.06em;
+  font-size: clamp(5rem, 19.4vw, 15rem);
+  line-height: 0.82;
+  letter-spacing: -0.05em;
   text-transform: uppercase;
   color: #fff;
   pointer-events: none;
-}
-
-.hero-splash-title span {
-  position: absolute;
-  left: 50%;
-  display: block;
-  white-space: nowrap;
-  transform: translateX(-50%);
-}
-
-.hero-splash-title span:first-child {
-  top: 11vh;
-  font-size: 1.18em;
-  letter-spacing: 0.08em;
-}
-
-.hero-splash-title span:last-child {
-  top: 52vh;
-}
-
-.hero-splash-kicker,
-.hero-splash-side {
-  position: absolute;
-  z-index: 3;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
-  color: #fff;
-}
-
-.hero-splash-kicker {
-  top: 6.2rem;
-  left: max(1.4rem, calc(50% - 38rem));
-}
-
-.hero-splash-side {
-  top: 6.2rem;
-  right: max(1.4rem, calc(50% - 38rem));
-}
-
-.hero-splash-lede {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  bottom: 1.6rem;
-  width: min(34rem, calc(100% - 2.4rem));
-  transform: translateX(-50%);
-  font-size: 0.92rem;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.82);
-  text-align: center;
 }
 
 .eyebrow {
@@ -652,33 +606,7 @@ section {
   }
 
   .hero-splash-title {
-    font-size: clamp(4.4rem, 28vw, 8rem);
-  }
-
-  .hero-splash-title span:first-child {
-    top: 5.6rem;
-    letter-spacing: 0.14em;
-  }
-
-  .hero-splash-title span:last-child {
-    top: auto;
-    bottom: 5.2rem;
-  }
-
-  .hero-splash-kicker,
-  .hero-splash-side {
-    top: 5.1rem;
-    left: 1.2rem;
-    right: auto;
-  }
-
-  .hero-splash-side {
-    left: auto;
-    right: 1.2rem;
-  }
-
-  .hero-splash-lede {
-    font-size: 0.84rem;
+    font-size: clamp(3.6rem, 22vw, 7.2rem);
   }
 }
 
