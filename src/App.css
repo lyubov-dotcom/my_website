@@ -208,6 +208,26 @@ body {
   overflow: hidden;
 }
 
+.hero-splash-glow {
+  position: absolute;
+  left: max(1.5rem, calc((100% - min(1100px, calc(100% - 3rem))) / 2));
+  top: 46%;
+  width: min(34rem, 62vw);
+  height: min(34rem, 62vw);
+  transform: translate(-8%, -52%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #c41010 0%,
+    #de2a12 28%,
+    #e95e14 62%,
+    rgba(233, 94, 20, 0) 72%
+  );
+  filter: blur(42px);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hero-splash-copy {
   position: absolute;
   left: 0;
@@ -630,6 +650,14 @@ section {
   .hero-splash-copy {
     top: 5.4rem;
     transform: none;
+  }
+
+  .hero-splash-glow {
+    top: 11rem;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: min(28rem, 88vw);
+    height: min(28rem, 88vw);
   }
 
   .hero-splash h1 {

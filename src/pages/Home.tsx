@@ -73,6 +73,7 @@ function Home() {
   return (
     <>
       <section id="top" className="hero-splash">
+        <div className="hero-splash-glow" aria-hidden="true" />
         <div className="hero-splash-copy">
           <p className="eyebrow">UX/UI · продуктовый дизайнер · финтех</p>
           <h1>
