@@ -1,7 +1,7 @@
 .hero-avatar-stage {
-  --avatar-w: clamp(210px, 28vw, 300px);
+  --avatar-w: clamp(230px, 30vw, 320px);
   width: var(--avatar-w);
-  perspective: 900px;
+  perspective: 980px;
   flex-shrink: 0;
 }
 
@@ -39,7 +39,7 @@
   will-change: transform;
 }
 
-@media (hover: none), (pointer: coarse) {
+@media (max-width: 860px) {
   .hero-avatar {
     animation: avatar-idle 7.2s ease-in-out infinite;
   }

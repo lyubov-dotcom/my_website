@@ -19,10 +19,10 @@ function HeroAvatar() {
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const canTrack = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-    if (reduce || !canTrack) return
+    const mobile = window.matchMedia('(max-width: 860px)').matches
+    if (reduce || mobile) return
 
-    const onMove = (event: PointerEvent) => {
+    const onMove = (event: MouseEvent) => {
       const stage = stageRef.current
       if (!stage) return
       const box = stage.getBoundingClientRect()
@@ -42,20 +42,22 @@ function HeroAvatar() {
 
       const card = cardRef.current
       if (card) {
-        card.style.transform = `rotateX(${(-nextY * 9).toFixed(2)}deg) rotateY(${(nextX * 12).toFixed(2)}deg) translate3d(${(nextX * 8).toFixed(2)}px, ${(nextY * 6).toFixed(2)}px, 0)`
+        card.style.transform = `rotateX(${(-nextY * 16).toFixed(2)}deg) rotateY(${(nextX * 22).toFixed(2)}deg) translate3d(${(nextX * 14).toFixed(2)}px, ${(nextY * 10).toFixed(2)}px, 0)`
       }
       eyeRefs.current.forEach((eye) => {
         if (!eye) return
-        eye.style.transform = `translate3d(${(nextX * 5.5).toFixed(2)}px, ${(nextY * 4).toFixed(2)}px, 0)`
+        eye.style.transform = `translate3d(${(nextX * 9).toFixed(2)}px, ${(nextY * 6.5).toFixed(2)}px, 0)`
       })
 
       frame = window.requestAnimationFrame(tick)
     }
 
     window.addEventListener('pointermove', onMove, { passive: true })
+    window.addEventListener('mousemove', onMove, { passive: true })
     frame = window.requestAnimationFrame(tick)
     return () => {
       window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('mousemove', onMove)
       window.cancelAnimationFrame(frame)
     }
   }, [])
