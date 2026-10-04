@@ -210,20 +210,21 @@ body {
 
 .hero-splash-glow {
   position: absolute;
-  left: max(1.5rem, calc((100% - min(1100px, calc(100% - 3rem))) / 2));
-  top: 46%;
-  width: min(34rem, 62vw);
-  height: min(34rem, 62vw);
-  transform: translate(-8%, -52%);
+  left: max(0.5rem, calc((100% - min(1100px, calc(100% - 3rem))) / 2));
+  top: 44%;
+  width: min(40rem, 70vw);
+  height: min(40rem, 70vw);
+  transform: translate(-4%, -50%);
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    #c41010 0%,
-    #de2a12 28%,
-    #e95e14 62%,
-    rgba(233, 94, 20, 0) 72%
+    #b40808 0%,
+    #d41410 24%,
+    #e53a14 46%,
+    #e95e14 66%,
+    rgba(233, 94, 20, 0) 74%
   );
-  filter: blur(42px);
+  filter: blur(34px);
   pointer-events: none;
   z-index: 0;
 }
