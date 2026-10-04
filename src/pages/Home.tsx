@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import HeroAvatar from '../components/HeroAvatar'
 
 const asset = (p: string) => `${import.meta.env.BASE_URL}${p}`
 
@@ -72,18 +73,21 @@ function Home() {
   return (
     <>
       <section id="top" className="hero">
-        <p className="eyebrow">UX/UI · продуктовый дизайнер · финтех</p>
-        <h1>
-          Интерфейсы, в которых<br />
-          всё <span className="accent">логично</span>
-        </h1>
-        <p className="lede">
-          Я UX/UI-дизайнер с инженерным бэкграундом. Мой опыт позволяет видеть
-          систему целиком, разбираться в сложных механизмах и не упускать детали.
-          Слушаю пользователей, слышу команду и уже 5 лет создаю продукты,
-          которым удобно доверять. Сейчас работаю над интерфейсами для банковской
-          сферы.
-        </p>
+        <div className="hero-copy">
+          <p className="eyebrow">UX/UI · продуктовый дизайнер · финтех</p>
+          <h1>
+            Интерфейсы, в которых<br />
+            всё <span className="accent">логично</span>
+          </h1>
+          <p className="lede">
+            Я UX/UI-дизайнер с инженерным бэкграундом. Мой опыт позволяет видеть
+            систему целиком, разбираться в сложных механизмах и не упускать детали.
+            Слушаю пользователей, слышу команду и уже 5 лет создаю продукты,
+            которым удобно доверять. Сейчас работаю над интерфейсами для банковской
+            сферы.
+          </p>
+        </div>
+        <HeroAvatar />
       </section>
 
       <section id="work" className="work">

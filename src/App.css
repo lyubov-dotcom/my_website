@@ -142,8 +142,15 @@ body {
 
 /* ---------- Hero ---------- */
 .hero {
-  padding: 6rem 0 4rem;
-  max-width: 720px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3rem 4rem;
+  align-items: center;
+  padding: 5.4rem 0 4rem;
+}
+
+.hero-copy {
+  max-width: 38rem;
 }
 
 .eyebrow {
@@ -512,6 +519,20 @@ section {
 @media (prefers-reduced-motion: reduce) {
   .site-bar {
     transition: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 2.2rem;
+    padding-top: 3.6rem;
+  }
+
+  .hero-copy {
+    max-width: 40rem;
+    justify-self: stretch;
   }
 }
 
