@@ -1,117 +1,67 @@
 import { useEffect, useRef } from 'react'
 import '../HeroAvatar.css'
 
-const asset = (name: string) => `${import.meta.env.BASE_URL}avatar/${name}.webp`
-
-const clamp = (n: number, min: number, max: number) => Math.min(max, Math.max(min, n))
+const photo = `${import.meta.env.BASE_URL}avatar/lyubov-3d-left.webp`
+const blueprint = `${import.meta.env.BASE_URL}avatar/lyubov-3d-left-blueprint.webp`
 
 function HeroAvatar() {
   const stageRef = useRef<HTMLDivElement>(null)
-  const rigRef = useRef<HTMLDivElement>(null)
-  const leftRef = useRef<HTMLImageElement>(null)
-  const frontRef = useRef<HTMLImageElement>(null)
-  const rightRef = useRef<HTMLImageElement>(null)
-  const wireRef = useRef<HTMLImageElement>(null)
-  const sheenRef = useRef<HTMLSpanElement>(null)
-  const target = useRef({ x: 0, y: 0 })
-  const current = useRef({ x: 0, y: 0 })
+  const layerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const stage = stageRef.current
+    const layer = layerRef.current
+    if (!stage || !layer) return
+
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const mobileMq = window.matchMedia('(max-width: 860px)')
+    const mobile = window.matchMedia('(max-width: 860px)')
+
+    const setPos = (x: number, y: number, hot: boolean) => {
+      layer.style.setProperty('--mx', `${x}%`)
+      layer.style.setProperty('--my', `${y}%`)
+      stage.classList.toggle('is-hot', hot)
+    }
+
     if (reduce) return
 
-    const onMove = (event: MouseEvent) => {
-      if (mobileMq.matches) return
-      const stage = stageRef.current
-      if (!stage) return
-      const box = stage.getBoundingClientRect()
-      const cx = box.left + box.width / 2
-      const cy = box.top + box.height * 0.42
-      target.current = {
-        x: clamp((event.clientX - cx) / (window.innerWidth * 0.42), -1, 1),
-        y: clamp((event.clientY - cy) / (window.innerHeight * 0.42), -1, 1),
-      }
-    }
-
-    const started = performance.now()
-    let frame = 0
-
-    const apply = (x: number, y: number) => {
-      const left = clamp((-x - 0.16) / 0.28, 0, 1)
-      const right = clamp((x - 0.16) / 0.28, 0, 1)
-      const front = Math.max(0, 1 - left - right)
-      if (leftRef.current) leftRef.current.style.opacity = left.toFixed(3)
-      if (frontRef.current) frontRef.current.style.opacity = front.toFixed(3)
-      if (rightRef.current) rightRef.current.style.opacity = right.toFixed(3)
-      if (wireRef.current) {
-        wireRef.current.style.opacity = (0.7 * front).toFixed(3)
-      }
-      if (rigRef.current) {
-        rigRef.current.style.transform = `rotateX(${(-y * 8).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg)`
-      }
-      if (sheenRef.current) {
-        sheenRef.current.style.transform = `translate3d(${(x * 18).toFixed(1)}%, ${(y * 12).toFixed(1)}%, 0)`
-      }
-    }
-
-    const tick = (now: number) => {
-      if (mobileMq.matches) {
+    if (mobile.matches) {
+      const started = performance.now()
+      let frame = 0
+      const tick = (now: number) => {
         const t = (now - started) / 1000
-        target.current = {
-          x: Math.sin(t * 0.42) * 0.72,
-          y: Math.sin(t * 0.25) * 0.18,
-        }
+        setPos(50 + Math.sin(t * 0.65) * 26, 40 + Math.cos(t * 0.48) * 14, true)
+        frame = window.requestAnimationFrame(tick)
       }
-      const nextX = current.current.x + (target.current.x - current.current.x) * 0.12
-      const nextY = current.current.y + (target.current.y - current.current.y) * 0.12
-      current.current = { x: nextX, y: nextY }
-      apply(nextX, nextY)
       frame = window.requestAnimationFrame(tick)
+      return () => window.cancelAnimationFrame(frame)
     }
 
-    window.addEventListener('pointermove', onMove, { passive: true })
-    window.addEventListener('mousemove', onMove, { passive: true })
-    frame = window.requestAnimationFrame(tick)
+    const onMove = (event: PointerEvent) => {
+      const box = stage.getBoundingClientRect()
+      const x = ((event.clientX - box.left) / box.width) * 100
+      const y = ((event.clientY - box.top) / box.height) * 100
+      setPos(x, y, true)
+    }
+    const onLeave = () => stage.classList.remove('is-hot')
+
+    stage.addEventListener('pointerenter', onMove)
+    stage.addEventListener('pointermove', onMove)
+    stage.addEventListener('pointerleave', onLeave)
     return () => {
-      window.removeEventListener('pointermove', onMove)
-      window.removeEventListener('mousemove', onMove)
-      window.cancelAnimationFrame(frame)
+      stage.removeEventListener('pointerenter', onMove)
+      stage.removeEventListener('pointermove', onMove)
+      stage.removeEventListener('pointerleave', onLeave)
     }
   }, [])
 
   return (
     <div className="hero-avatar-stage" ref={stageRef}>
-      <div className="hero-avatar-reticle" aria-hidden="true" />
-      <div className="hero-avatar-rig" ref={rigRef}>
-        <img
-          ref={leftRef}
-          className="hero-avatar-view"
-          src={asset('lyubov-3d-left')}
-          alt=""
-          aria-hidden="true"
-        />
-        <img
-          ref={frontRef}
-          className="hero-avatar-view is-front"
-          src={asset('lyubov-3d-front')}
-          alt="Любовь Чуйко"
-        />
-        <img
-          ref={rightRef}
-          className="hero-avatar-view"
-          src={asset('lyubov-3d-right')}
-          alt=""
-          aria-hidden="true"
-        />
-        <img
-          ref={wireRef}
-          className="hero-avatar-view is-wire"
-          src={asset('lyubov-3d-wire')}
-          alt=""
-          aria-hidden="true"
-        />
-        <span className="hero-avatar-sheen" ref={sheenRef} aria-hidden="true" />
+      <div className="hero-avatar-rig">
+        <img className="hero-avatar-photo" src={photo} alt="Любовь Чуйко" />
+        <div className="hero-avatar-blueprint" ref={layerRef} aria-hidden="true">
+          <img src={blueprint} alt="" />
+          <span className="hero-avatar-lens" />
+        </div>
       </div>
       <div className="hero-avatar-shadow" aria-hidden="true" />
     </div>
