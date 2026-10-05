@@ -1,40 +1,122 @@
 .hero-avatar-stage--splash {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  top: 0;
+  position: relative;
   z-index: 1;
-  width: 52%;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
   justify-content: flex-end;
+  min-height: 0;
+  height: 100%;
   border: 0;
   background: transparent;
   overflow: visible;
 }
 
-.hero-avatar-photo {
-  display: block;
-  height: 96%;
+.hero-avatar-torch {
+  --mx: 72%;
+  --my: 46%;
+  --beam: 11rem;
+  position: relative;
+  height: min(92%, 86dvh);
   width: auto;
-  max-width: none;
+  aspect-ratio: 864 / 1152;
+  max-width: 100%;
+  cursor: none;
+  touch-action: none;
+}
+
+.hero-avatar-photo,
+.hero-avatar-xray,
+.hero-avatar-beam {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
   object-fit: contain;
-  object-position: right bottom;
-  pointer-events: none;
+  object-position: center bottom;
   border: 0;
   outline: 0;
   background: transparent;
   box-shadow: none;
+  pointer-events: none;
 }
 
-@media (max-width: 860px) {
+.hero-avatar-xray {
+  opacity: 1;
+  -webkit-mask-image: radial-gradient(
+    circle at var(--mx) var(--my),
+    #000 0,
+    #000 1.6rem,
+    transparent 3.8rem
+  );
+  mask-image: radial-gradient(
+    circle at var(--mx) var(--my),
+    #000 0,
+    #000 1.6rem,
+    transparent 3.8rem
+  );
+  transition:
+    opacity 0.2s ease,
+    -webkit-mask-image 0.05s linear,
+    mask-image 0.05s linear;
+}
+
+.hero-avatar-torch.is-lit .hero-avatar-xray {
+  -webkit-mask-image: radial-gradient(
+    circle var(--beam) at var(--mx) var(--my),
+    #000 0,
+    #000 42%,
+    transparent 72%
+  );
+  mask-image: radial-gradient(
+    circle var(--beam) at var(--mx) var(--my),
+    #000 0,
+    #000 42%,
+    transparent 72%
+  );
+}
+
+.hero-avatar-beam {
+  opacity: 0;
+  background: radial-gradient(
+    circle var(--beam) at var(--mx) var(--my),
+    rgba(255, 236, 196, 0.34) 0%,
+    rgba(255, 196, 120, 0.12) 38%,
+    transparent 70%
+  );
+  mix-blend-mode: screen;
+  transition: opacity 0.18s ease;
+}
+
+.hero-avatar-torch.is-lit .hero-avatar-beam {
+  opacity: 1;
+}
+
+.hero-avatar-hint {
+  margin: 0.35rem 0 1.1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+}
+
+@media (max-width: 980px) {
   .hero-avatar-stage--splash {
-    width: 100%;
-    height: 52%;
-    top: auto;
+    height: auto;
+    min-height: 52vh;
   }
 
-  .hero-avatar-photo {
-    height: 100%;
+  .hero-avatar-torch {
+    height: min(58vh, 34rem);
+    --beam: 8.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-avatar-xray,
+  .hero-avatar-beam {
+    transition: none;
   }
 }

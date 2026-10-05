@@ -74,31 +74,74 @@ function Home() {
     <>
       <section id="top" className="hero-splash">
         <div className="hero-splash-glow" aria-hidden="true" />
-        <div className="hero-splash-copy">
-          <p className="eyebrow">UX/UI · продуктовый дизайнер · финтех</p>
-          <h1>
-            Интерфейсы, в которых
-            <br />
-            всё <span className="accent">логично</span>
-          </h1>
-          <p className="lede">
-            Я UX/UI-дизайнер с инженерным бэкграундом. Мой опыт позволяет видеть
-            систему целиком, разбираться в сложных механизмах и не упускать детали.
-            Слушаю пользователей, слышу команду и уже 5 лет создаю продукты,
-            которым удобно доверять. Сейчас работаю над интерфейсами для банковской
-            сферы.
-          </p>
-          <div className="hero-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Мои работы
-            </button>
+        <h1 className="visually-hidden">Любовь Чуйко — UX/UI и продуктовый дизайнер</h1>
+        <div className="hero-board">
+          <div className="hero-splash-copy">
+            <p className="lede">
+              Я UX/UI-дизайнер с инженерным бэкграундом. Мой опыт позволяет видеть
+              систему целиком, разбираться в сложных механизмах и не упускать детали.
+            </p>
           </div>
+          <HeroAvatar />
+          <aside className="hero-spec" aria-label="Спецификация">
+            <p className="hero-spec-name">Любовь Чуйко</p>
+            <p className="hero-spec-role">UX/UI · продуктовый дизайнер · финтех</p>
+
+            <div className="hero-spec-block">
+              <p className="hero-spec-label">[образование]</p>
+              <p className="hero-spec-title">Магистратура</p>
+              <p className="hero-spec-note">РГУ нефти и газа им. И. М. Губкина</p>
+            </div>
+
+            <div className="hero-spec-block">
+              <p className="hero-spec-label">[опыт]</p>
+              <p className="hero-spec-stat">
+                5 лет <span>в продукте</span>
+              </p>
+              <p className="hero-spec-note">Octobank · ПСБ · FUN&amp;SUN</p>
+            </div>
+
+            <div className="hero-spec-block">
+              <p className="hero-spec-label">[фокус]</p>
+              <ul className="hero-spec-meters">
+                <li>
+                  <span>Финтех</span>
+                  <span className="hero-spec-track"><i style={{ width: '92%' }} /></span>
+                </li>
+                <li>
+                  <span>Дизайн-системы</span>
+                  <span className="hero-spec-track"><i style={{ width: '78%' }} /></span>
+                </li>
+                <li>
+                  <span>Сложные флоу</span>
+                  <span className="hero-spec-track"><i style={{ width: '86%' }} /></span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="hero-spec-block">
+              <p className="hero-spec-label">[проекты]</p>
+              <ul className="hero-spec-cases">
+                <li>
+                  <span>Octobank</span>
+                  <b>регистрация</b>
+                </li>
+                <li>
+                  <span>Octobank</span>
+                  <b>Premium</b>
+                </li>
+                <li>
+                  <span>ПСБ</span>
+                  <b>цифровой рубль</b>
+                </li>
+                <li>
+                  <span>FUN&amp;SUN</span>
+                  <b>подбор тура</b>
+                </li>
+              </ul>
+            </div>
+          </aside>
         </div>
-        <HeroAvatar />
       </section>
 
       <section id="work" className="work">
