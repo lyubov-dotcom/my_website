@@ -2,8 +2,7 @@
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-end;
   min-height: 0;
   height: 100%;
@@ -15,12 +14,12 @@
 .hero-avatar-torch {
   --mx: 70%;
   --my: 44%;
-  --beam: 11rem;
+  --beam: 5.4rem;
   position: relative;
-  height: min(92%, 86dvh);
+  height: min(100%, 100dvh);
   width: auto;
   aspect-ratio: 864 / 1152;
-  max-width: 100%;
+  max-width: none;
   cursor: none;
   touch-action: none;
 }
@@ -34,7 +33,7 @@
   height: 100%;
   display: block;
   object-fit: contain;
-  object-position: center bottom;
+  object-position: right bottom;
   border: 0;
   outline: 0;
   background: transparent;
@@ -47,14 +46,14 @@
   -webkit-mask-image: radial-gradient(
     circle at var(--mx) var(--my),
     #000 0,
-    #000 1.6rem,
-    transparent 3.8rem
+    #000 0.7rem,
+    transparent 1.8rem
   );
   mask-image: radial-gradient(
     circle at var(--mx) var(--my),
     #000 0,
-    #000 1.6rem,
-    transparent 3.8rem
+    #000 0.7rem,
+    transparent 1.8rem
   );
   transition:
     opacity 0.2s ease,
@@ -66,14 +65,14 @@
   -webkit-mask-image: radial-gradient(
     circle var(--beam) at var(--mx) var(--my),
     #000 0,
-    #000 42%,
-    transparent 72%
+    #000 38%,
+    transparent 70%
   );
   mask-image: radial-gradient(
     circle var(--beam) at var(--mx) var(--my),
     #000 0,
-    #000 42%,
-    transparent 72%
+    #000 38%,
+    transparent 70%
   );
 }
 
@@ -82,8 +81,8 @@
   background: radial-gradient(
     circle var(--beam) at var(--mx) var(--my),
     rgba(255, 236, 196, 0.34) 0%,
-    rgba(255, 196, 120, 0.12) 38%,
-    transparent 70%
+    rgba(255, 196, 120, 0.12) 36%,
+    transparent 68%
   );
   mix-blend-mode: screen;
   transition: opacity 0.18s ease;
@@ -93,24 +92,22 @@
   opacity: 1;
 }
 
-.hero-avatar-hint {
-  margin: 0.35rem 0 1.1rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  pointer-events: none;
-}
-
 @media (max-width: 980px) {
   .hero-avatar-stage--splash {
     height: auto;
-    min-height: 52vh;
+    min-height: 58vh;
+    justify-content: center;
   }
 
   .hero-avatar-torch {
-    height: min(58vh, 34rem);
-    --beam: 8.5rem;
+    height: min(68vh, 40rem);
+    --beam: 4.4rem;
+  }
+
+  .hero-avatar-photo,
+  .hero-avatar-xray,
+  .hero-avatar-beam {
+    object-position: center bottom;
   }
 }
 

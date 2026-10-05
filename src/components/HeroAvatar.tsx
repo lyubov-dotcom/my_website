@@ -46,7 +46,6 @@ function HeroAvatar() {
         <img className="hero-avatar-xray" src={steel} alt="" aria-hidden="true" />
         <span className="hero-avatar-beam" aria-hidden="true" />
       </div>
-      <p className="hero-avatar-hint">Наведи — внутри стальной чертёж</p>
     </div>
   )
 }

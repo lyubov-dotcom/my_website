@@ -218,11 +218,11 @@ body {
 
 .hero-splash-glow {
   position: absolute;
-  left: 50%;
-  top: 48%;
-  width: min(46rem, 72vw);
-  height: min(46rem, 72vw);
-  transform: translate(-50%, -46%);
+  left: max(0.5rem, calc((100% - min(1200px, calc(100% - 3rem))) / 2));
+  top: 46%;
+  width: min(36rem, 58vw);
+  height: min(36rem, 58vw);
+  transform: translate(-6%, -48%);
   border-radius: 50%;
   background: radial-gradient(
     circle,
@@ -240,20 +240,26 @@ body {
 .hero-board {
   position: relative;
   z-index: 2;
-  width: min(1200px, calc(100% - 3rem));
-  margin-inline: auto;
+  width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: minmax(15rem, 1fr) minmax(20rem, 0.92fr) minmax(15rem, 1fr);
-  gap: 1.2rem 1.6rem;
+  grid-template-columns: minmax(20rem, 26rem) minmax(0, 1fr);
+  gap: 1.2rem 1.2rem;
   align-items: stretch;
-  padding: 5.4rem 0 0.4rem;
+  padding: 5.4rem 0 0 max(1.2rem, calc((100% - min(1200px, calc(100% - 3rem))) / 2));
+}
+
+.hero-col {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  max-width: 26rem;
+  padding: 0.4rem 0 2.4rem;
 }
 
 .hero-splash-copy {
-  align-self: center;
-  max-width: 22.5rem;
-  padding-bottom: 4rem;
+  max-width: none;
 }
 
 .hero-splash .lede {
@@ -265,11 +271,8 @@ body {
 }
 
 .hero-spec {
-  align-self: center;
-  justify-self: end;
-  width: min(19.5rem, 100%);
+  width: 100%;
   padding: 1.15rem 1.2rem 1.25rem;
-  margin-bottom: 3.2rem;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
@@ -316,8 +319,8 @@ body {
 }
 
 .hero-spec-block {
-  margin-top: 1.05rem;
-  padding-top: 0.85rem;
+  margin-top: 0.85rem;
+  padding-top: 0.7rem;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
 
@@ -376,19 +379,20 @@ body {
 }
 
 .hero-spec-cases li {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.6rem;
+  display: grid;
+  gap: 0.12rem;
   font-size: 0.84rem;
 }
 
 .hero-spec-cases span {
-  color: rgba(255, 255, 255, 0.62);
+  font-weight: 600;
+  color: #fff;
 }
 
 .hero-spec-cases b {
-  font-weight: 600;
-  color: #fff;
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .eyebrow {
@@ -768,15 +772,15 @@ section {
 
   .hero-board {
     grid-template-columns: 1fr;
-    grid-template-rows: auto minmax(22rem, 58vh) auto;
-    padding: 5.2rem 0 1.6rem;
-    gap: 0.6rem;
+    grid-template-rows: auto minmax(24rem, 62vh);
+    padding: 5.2rem 1.2rem 0;
+    gap: 1rem;
   }
 
-  .hero-splash-copy {
-    max-width: 36rem;
-    padding-bottom: 0.4rem;
+  .hero-col {
     order: 1;
+    max-width: 36rem;
+    padding: 0 0 0.4rem;
   }
 
   .hero-avatar-stage--splash {
@@ -784,14 +788,11 @@ section {
   }
 
   .hero-spec {
-    order: 3;
-    justify-self: stretch;
     width: min(28rem, 100%);
-    margin-bottom: 0.4rem;
   }
 
   .hero-splash-glow {
-    top: 42%;
+    top: 18%;
     left: 50%;
     transform: translate(-50%, -30%);
     width: min(28rem, 88vw);
