@@ -88,12 +88,6 @@ function Home() {
               <p className="hero-spec-role">UX/UI · продуктовый дизайнер · финтех</p>
 
               <div className="hero-spec-block">
-                <p className="hero-spec-label">[образование]</p>
-                <p className="hero-spec-title">Магистратура</p>
-                <p className="hero-spec-note">РГУ нефти и газа им. И. М. Губкина</p>
-              </div>
-
-              <div className="hero-spec-block">
                 <p className="hero-spec-label">[опыт]</p>
                 <p className="hero-spec-stat">
                   5 лет <span>в продукте</span>
@@ -123,7 +117,7 @@ function Home() {
                 <p className="hero-spec-label">[проекты]</p>
                 <ul className="hero-spec-cases">
                   <li>
-                    <span>Octobank</span>
+                    <span>OCTOBANK</span>
                     <b>Концепт и проработка экранов всего приложения</b>
                   </li>
                   <li>

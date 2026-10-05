@@ -20,7 +20,7 @@
   width: auto;
   aspect-ratio: 864 / 1152;
   max-width: none;
-  cursor: none;
+  cursor: default;
   touch-action: none;
 }
 
@@ -86,6 +86,10 @@
   );
   mix-blend-mode: screen;
   transition: opacity 0.18s ease;
+}
+
+.hero-avatar-torch.is-lit {
+  cursor: none;
 }
 
 .hero-avatar-torch.is-lit .hero-avatar-beam {
