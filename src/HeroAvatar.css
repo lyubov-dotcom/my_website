@@ -33,7 +33,7 @@
   height: 100%;
   display: block;
   object-fit: contain;
-  object-position: right bottom;
+  object-position: center bottom;
   border: 0;
   outline: 0;
   background: transparent;
