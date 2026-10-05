@@ -42,38 +42,24 @@
 }
 
 .hero-avatar-xray {
-  opacity: 1;
+  opacity: 0;
   -webkit-mask-image: radial-gradient(
-    circle at var(--mx) var(--my),
+    circle var(--beam) at var(--mx) var(--my),
     #000 0,
-    #000 0.7rem,
-    transparent 1.8rem
+    #000 38%,
+    transparent 70%
   );
   mask-image: radial-gradient(
-    circle at var(--mx) var(--my),
+    circle var(--beam) at var(--mx) var(--my),
     #000 0,
-    #000 0.7rem,
-    transparent 1.8rem
+    #000 38%,
+    transparent 70%
   );
-  transition:
-    opacity 0.2s ease,
-    -webkit-mask-image 0.05s linear,
-    mask-image 0.05s linear;
+  transition: opacity 0.18s ease;
 }
 
 .hero-avatar-torch.is-lit .hero-avatar-xray {
-  -webkit-mask-image: radial-gradient(
-    circle var(--beam) at var(--mx) var(--my),
-    #000 0,
-    #000 38%,
-    transparent 70%
-  );
-  mask-image: radial-gradient(
-    circle var(--beam) at var(--mx) var(--my),
-    #000 0,
-    #000 38%,
-    transparent 70%
-  );
+  opacity: 1;
 }
 
 .hero-avatar-beam {

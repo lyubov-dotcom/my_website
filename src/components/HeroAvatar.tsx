@@ -54,8 +54,8 @@ function HeroAvatar() {
     if (!new URLSearchParams(window.location.search).has('torch')) return
     const el = stageRef.current
     if (!el) return
-    el.style.setProperty('--mx', '48%')
-    el.style.setProperty('--my', '36%')
+    el.style.setProperty('--mx', '46%')
+    el.style.setProperty('--my', '82%')
     setLit(true)
   }, [])
 
