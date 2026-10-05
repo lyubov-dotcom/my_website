@@ -246,7 +246,7 @@ body {
   grid-template-columns: minmax(20rem, 26rem) minmax(0, 1fr);
   gap: 1.2rem 1.2rem;
   align-items: stretch;
-  padding: 5.4rem 0 0 max(1.2rem, calc((100% - min(1200px, calc(100% - 3rem))) / 2));
+  padding: 5.4rem max(1.2rem, calc((100% - min(1200px, calc(100% - 3rem))) / 2)) 0;
 }
 
 .hero-col {
