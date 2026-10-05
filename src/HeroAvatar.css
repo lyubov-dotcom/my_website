@@ -13,8 +13,8 @@
 }
 
 .hero-avatar-torch {
-  --mx: 72%;
-  --my: 46%;
+  --mx: 70%;
+  --my: 44%;
   --beam: 11rem;
   position: relative;
   height: min(92%, 86dvh);

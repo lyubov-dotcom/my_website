@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import '../HeroAvatar.css'
 
 const bronze = `${import.meta.env.BASE_URL}avatar/lyubov-bronze-bust.webp`
@@ -7,6 +7,15 @@ const steel = `${import.meta.env.BASE_URL}avatar/lyubov-steel-xray.webp`
 function HeroAvatar() {
   const stageRef = useRef<HTMLDivElement>(null)
   const [lit, setLit] = useState(false)
+
+  useEffect(() => {
+    if (!new URLSearchParams(window.location.search).has('torch')) return
+    const el = stageRef.current
+    if (!el) return
+    el.style.setProperty('--mx', '48%')
+    el.style.setProperty('--my', '36%')
+    setLit(true)
+  }, [])
 
   const aim = useCallback((clientX: number, clientY: number) => {
     const el = stageRef.current

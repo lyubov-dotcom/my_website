@@ -106,15 +106,15 @@ function Home() {
               <ul className="hero-spec-meters">
                 <li>
                   <span>Финтех</span>
-                  <span className="hero-spec-track"><i style={{ width: '92%' }} /></span>
+                  <span className="hero-spec-track"><span style={{ width: '92%' }} /></span>
                 </li>
                 <li>
                   <span>Дизайн-системы</span>
-                  <span className="hero-spec-track"><i style={{ width: '78%' }} /></span>
+                  <span className="hero-spec-track"><span style={{ width: '78%' }} /></span>
                 </li>
                 <li>
                   <span>Сложные флоу</span>
-                  <span className="hero-spec-track"><i style={{ width: '86%' }} /></span>
+                  <span className="hero-spec-track"><span style={{ width: '86%' }} /></span>
                 </li>
               </ul>
             </div>

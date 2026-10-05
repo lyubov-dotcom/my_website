@@ -365,11 +365,11 @@ body {
 
 .hero-spec-track {
   display: block;
-  height: 0.38rem;
-  background: rgba(255, 255, 255, 0.16);
+  height: 0.42rem;
+  background: rgba(0, 0, 0, 0.22);
 }
 
-.hero-spec-track i {
+.hero-spec-track > span {
   display: block;
   height: 100%;
   background: #ffe7c2;
