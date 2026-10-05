@@ -1,3 +1,7 @@
+:root {
+  --content-width: min(1200px, calc(100% - 3rem));
+}
+
 :root[data-theme='dark'] {
   --bg: #0c0d12;
   --bg-soft: #14151d;
@@ -107,7 +111,7 @@ body {
 }
 
 .site-bar-inner {
-  width: min(1200px, calc(100% - 3rem));
+  width: var(--content-width);
   margin-inline: auto;
   display: flex;
   align-items: center;
@@ -218,7 +222,7 @@ body {
 
 .hero-splash-glow {
   position: absolute;
-  left: max(0.5rem, calc((100% - min(1200px, calc(100% - 3rem))) / 2));
+  left: max(0.5rem, calc((100% - var(--content-width)) / 2));
   top: 46%;
   width: min(36rem, 58vw);
   height: min(36rem, 58vw);
@@ -240,13 +244,14 @@ body {
 .hero-board {
   position: relative;
   z-index: 2;
-  width: 100%;
+  width: var(--content-width);
   height: 100%;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(20rem, 26rem) minmax(0, 1fr);
   gap: 1.2rem 1.2rem;
   align-items: stretch;
-  padding: 5.4rem max(1.2rem, calc((100% - min(1200px, calc(100% - 3rem))) / 2)) 0;
+  padding: 5.4rem 0 0;
 }
 
 .hero-col {
@@ -777,7 +782,7 @@ section {
   .hero-board {
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(24rem, 62vh);
-    padding: 5.2rem 1.2rem 0;
+    padding: 5.2rem 0 0;
     gap: 1rem;
   }
 
