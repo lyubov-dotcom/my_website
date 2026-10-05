@@ -55,7 +55,7 @@ function HeroAvatar() {
     const el = stageRef.current
     if (!el) return
     el.style.setProperty('--mx', '46%')
-    el.style.setProperty('--my', '82%')
+    el.style.setProperty('--my', '56%')
     setLit(true)
   }, [])
 
