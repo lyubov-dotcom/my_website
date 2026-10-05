@@ -203,12 +203,12 @@ function Home() {
       <section id="contacts" className="contacts">
         <div className="section-head">
           <h2>Контакты</h2>
-          <p>Можно написать или позвонить — отвечаю в Telegram, WhatsApp и по почте.</p>
+          <p>Можно написать — отвечаю в Telegram и по почте.</p>
         </div>
         <ul className="contact-links">
           <li>
-            <span>Телефон</span>
-            <a href="tel:+79162538106">+7 916 253-81-06</a>
+            <span>Telegram</span>
+            <a href="https://t.me/lyblue" target="_blank" rel="noreferrer">@lyblue</a>
           </li>
           <li>
             <span>Email</span>
