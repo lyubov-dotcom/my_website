@@ -154,8 +154,8 @@ body {
 
 .brand-mark {
   display: block;
-  width: 1.55rem;
-  height: 1.55rem;
+  width: 2.2rem;
+  height: 2.2rem;
   flex-shrink: 0;
   color: currentColor;
 }
@@ -326,8 +326,8 @@ body {
 
 .hero-spec-logo {
   display: block;
-  width: 1.45rem;
-  height: 1.45rem;
+  width: 1.85rem;
+  height: 1.85rem;
   flex-shrink: 0;
   color: #fff;
 }
@@ -404,9 +404,9 @@ body {
 .hero-spec-focus-copy i {
   font-style: normal;
   font-weight: 400;
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .hero-spec-focus-copy--lead b {
@@ -802,8 +802,8 @@ section {
 
 .footer-mark {
   display: block;
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.45rem;
+  height: 1.45rem;
   flex-shrink: 0;
   color: currentColor;
 }
