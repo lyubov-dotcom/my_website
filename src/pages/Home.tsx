@@ -100,33 +100,6 @@ function Home() {
               </div>
 
               <div className="hero-spec-block">
-                <p className="hero-spec-label">[фокус]</p>
-                <ul className="hero-spec-focus">
-                  <li>
-                    <span>Контекст</span>
-                    <span className="hero-spec-focus-copy">
-                      <b>Финтех</b>
-                      <i>основной</i>
-                    </span>
-                  </li>
-                  <li>
-                    <span>Акцент</span>
-                    <span className="hero-spec-focus-copy hero-spec-focus-copy--lead">
-                      <b>Мобильные приложения</b>
-                      <i>главный формат</i>
-                    </span>
-                  </li>
-                  <li>
-                    <span>Также</span>
-                    <span className="hero-spec-focus-copy hero-spec-focus-copy--quiet">
-                      <b>Веб-интерфейсы</b>
-                      <i>тоже делаю</i>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="hero-spec-block">
                 <p className="hero-spec-label">[проекты]</p>
                 <ul className="hero-spec-cases">
                   <li>
