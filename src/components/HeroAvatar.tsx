@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import '../HeroAvatar.css'
 
-const bronze = `${import.meta.env.BASE_URL}avatar/lyubov-bronze-bust.webp?v=no-heart`
-const steel = `${import.meta.env.BASE_URL}avatar/lyubov-steel-xray.webp?v=no-heart`
+const bronze = `${import.meta.env.BASE_URL}avatar/lyubov-bronze-bust.webp?v=mesh-chest`
+const steel = `${import.meta.env.BASE_URL}avatar/lyubov-steel-xray.webp?v=mesh-chest`
 
 type HitMap = {
   data: Uint8ClampedArray
