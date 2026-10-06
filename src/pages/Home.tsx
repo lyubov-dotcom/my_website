@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import HeroAvatar from '../components/HeroAvatar'
+import LogoMark from '../components/LogoMark'
 
 const asset = (p: string) => `${import.meta.env.BASE_URL}${p}`
 
@@ -84,7 +85,10 @@ function Home() {
               </p>
             </div>
             <aside className="hero-spec" aria-label="Спецификация">
-              <p className="hero-spec-name">Любовь Чуйко</p>
+              <p className="hero-spec-name">
+                <LogoMark className="hero-spec-logo" />
+                Любовь Чуйко
+              </p>
               <p className="hero-spec-role">UX/UI · продуктовый дизайнер · финтех</p>
 
               <div className="hero-spec-block">
@@ -97,18 +101,27 @@ function Home() {
 
               <div className="hero-spec-block">
                 <p className="hero-spec-label">[фокус]</p>
-                <ul className="hero-spec-meters">
+                <ul className="hero-spec-focus">
                   <li>
-                    <span>Финтех</span>
-                    <span className="hero-spec-track"><span style={{ width: '92%' }} /></span>
+                    <span>Контекст</span>
+                    <span className="hero-spec-focus-copy">
+                      <b>Финтех</b>
+                      <i>основной</i>
+                    </span>
                   </li>
                   <li>
-                    <span>Дизайн-системы</span>
-                    <span className="hero-spec-track"><span style={{ width: '78%' }} /></span>
+                    <span>Акцент</span>
+                    <span className="hero-spec-focus-copy hero-spec-focus-copy--lead">
+                      <b>Мобильные приложения</b>
+                      <i>главный формат</i>
+                    </span>
                   </li>
                   <li>
-                    <span>Сложные флоу</span>
-                    <span className="hero-spec-track"><span style={{ width: '86%' }} /></span>
+                    <span>Также</span>
+                    <span className="hero-spec-focus-copy hero-spec-focus-copy--quiet">
+                      <b>Веб-интерфейсы</b>
+                      <i>тоже делаю</i>
+                    </span>
                   </li>
                 </ul>
               </div>
