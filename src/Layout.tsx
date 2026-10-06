@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import LogoMark from './components/LogoMark'
 import './App.css'
 
 type Theme = 'light' | 'dark'
@@ -115,7 +116,7 @@ function Layout() {
       <header className={headerClass}>
         <div className="site-bar-inner">
           <Link className="brand" to="/">
-            <span className="brand-mark" aria-hidden="true">✳</span>
+            <LogoMark className="brand-mark" />
             Любовь
           </Link>
           <nav className="nav-links">
@@ -140,7 +141,10 @@ function Layout() {
         </main>
 
         <footer className="footer">
-          <span>© {year} Любовь Чуйко</span>
+          <span className="footer-brand">
+            <LogoMark className="footer-mark" />
+            © {year} Любовь Чуйко
+          </span>
           <span>UX/UI · продуктовый дизайн · финтех</span>
         </footer>
       </div>
