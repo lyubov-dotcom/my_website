@@ -121,7 +121,6 @@ function Home() {
           <HeroAvatar />
         </div>
       </section>
-      <div className="hero-fade" aria-hidden="true" />
 
       <section id="work" className="work">
         <div className="section-head">

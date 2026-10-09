@@ -48,20 +48,6 @@ body {
   margin-inline: auto;
 }
 
-.hero-fade {
-  height: clamp(8rem, 22vh, 14rem);
-  margin: 0;
-  background: linear-gradient(
-    180deg,
-    var(--hero) 0%,
-    #c24a12 22%,
-    #7a2c10 48%,
-    #2a1212 74%,
-    var(--bg) 100%
-  );
-  pointer-events: none;
-}
-
 /* ---------- Nav ---------- */
 .site-bar {
   position: fixed;
@@ -199,6 +185,25 @@ body {
   background: var(--hero);
   color: #fff;
   overflow: hidden;
+}
+
+.hero-splash::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(12rem, 34vh, 22rem);
+  background: linear-gradient(
+    180deg,
+    rgb(233 94 20 / 0%) 0%,
+    rgb(233 94 20 / 18%) 22%,
+    rgb(154 52 16 / 62%) 48%,
+    rgb(42 14 12 / 92%) 76%,
+    var(--bg) 100%
+  );
+  pointer-events: none;
+  z-index: 4;
 }
 
 .hero-splash-glow {
