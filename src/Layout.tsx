@@ -3,23 +3,6 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import LogoMark from './components/LogoMark'
 import './App.css'
 
-type Theme = 'light' | 'dark'
-
-function useTheme(): [Theme, () => void] {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem('theme')
-    return stored === 'light' || stored === 'dark' ? stored : 'dark'
-  })
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
-  }, [theme])
-
-  const toggle = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))
-  return [theme, toggle]
-}
-
 function useHeaderMotion() {
   const [hidden, setHidden] = useState(false)
   const [expanded, setExpanded] = useState(false)
@@ -62,13 +45,17 @@ function useHeaderMotion() {
 }
 
 function Layout() {
-  const [theme, toggleTheme] = useTheme()
   const { hidden, expanded } = useHeaderMotion()
   const navigate = useNavigate()
   const location = useLocation()
   const year = useMemo(() => new Date().getFullYear(), [])
   const isHome = location.pathname === '/'
   const [overHero, setOverHero] = useState(isHome)
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    localStorage.removeItem('theme')
+  }, [])
 
   const goToSection = (id: string) => {
     const scroll = () => {
@@ -124,14 +111,6 @@ function Layout() {
             <button type="button" onClick={() => goToSection('experience')}>Опыт</button>
             <button type="button" onClick={() => goToSection('contacts')}>Контакты</button>
           </nav>
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Переключить тему"
-          >
-            {theme === 'dark' ? '☀︎ Светлая' : '☾ Тёмная'}
-          </button>
         </div>
       </header>
 

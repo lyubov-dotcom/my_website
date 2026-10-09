@@ -1,8 +1,6 @@
 :root {
   --content-width: min(1200px, calc(100% - 3rem));
-}
-
-:root[data-theme='dark'] {
+  --hero: #e95e14;
   --bg: #0c0d12;
   --bg-soft: #14151d;
   --surface: rgba(255, 255, 255, 0.04);
@@ -12,18 +10,6 @@
   --accent: #8a7bff;
   --accent-strong: #7c5cff;
   --shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
-}
-
-:root[data-theme='light'] {
-  --bg: #f7f6fb;
-  --bg-soft: #ffffff;
-  --surface: rgba(18, 18, 40, 0.03);
-  --border: rgba(18, 18, 40, 0.1);
-  --text: #16161d;
-  --text-muted: #5c5c6b;
-  --accent: #6a53ff;
-  --accent-strong: #5a3fff;
-  --shadow: 0 30px 60px -34px rgba(60, 50, 120, 0.35);
 }
 
 body {
@@ -60,6 +46,20 @@ body {
 .shell--home .footer {
   width: min(1100px, 100% - 3rem);
   margin-inline: auto;
+}
+
+.hero-fade {
+  height: clamp(8rem, 22vh, 14rem);
+  margin: 0;
+  background: linear-gradient(
+    180deg,
+    var(--hero) 0%,
+    #c24a12 22%,
+    #7a2c10 48%,
+    #2a1212 74%,
+    var(--bg) 100%
+  );
+  pointer-events: none;
 }
 
 /* ---------- Nav ---------- */
@@ -102,12 +102,6 @@ body {
 
 .site-bar.is-over-hero .brand-mark {
   color: #fff;
-}
-
-.site-bar.is-over-hero .theme-toggle {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.08);
 }
 
 .site-bar-inner {
@@ -184,23 +178,6 @@ body {
   color: var(--text);
 }
 
-.theme-toggle {
-  cursor: pointer;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  padding: 0.5rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-
-.theme-toggle:hover {
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
-
 /* ---------- Hero ---------- */
 .hero {
   display: grid;
@@ -219,7 +196,7 @@ body {
   min-height: 100dvh;
   height: 100dvh;
   padding: 0;
-  background: #e95e14;
+  background: var(--hero);
   color: #fff;
   overflow: hidden;
 }
