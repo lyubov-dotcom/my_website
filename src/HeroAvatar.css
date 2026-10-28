@@ -9,6 +9,7 @@
   border: 0;
   background: transparent;
   overflow: visible;
+  touch-action: pan-y;
 }
 
 .hero-avatar-torch {
@@ -22,6 +23,15 @@
   aspect-ratio: 864 / 1152;
   cursor: default;
   touch-action: pan-y;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hero-avatar-torch,
+  .hero-avatar-torch.is-lit {
+    cursor: default;
+    pointer-events: none;
+    touch-action: pan-y;
+  }
 }
 
 .hero-avatar-photo,
