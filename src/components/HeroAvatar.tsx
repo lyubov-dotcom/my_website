@@ -99,14 +99,22 @@ function HeroAvatar() {
     setLit(true)
   }
 
+  const trackMouse = (event: { pointerType: string; clientX: number; clientY: number }) => {
+    if (event.pointerType !== 'mouse') return
+    track(event.clientX, event.clientY)
+  }
+
   return (
     <div className="hero-avatar-stage hero-avatar-stage--splash">
       <div
         ref={stageRef}
         className={`hero-avatar-torch${lit ? ' is-lit' : ''}`}
-        onPointerMove={(event) => track(event.clientX, event.clientY)}
-        onPointerEnter={(event) => track(event.clientX, event.clientY)}
-        onPointerLeave={() => setLit(false)}
+        onPointerMove={trackMouse}
+        onPointerEnter={trackMouse}
+        onPointerLeave={(event) => {
+          if (event.pointerType !== 'mouse') return
+          setLit(false)
+        }}
       >
         <img ref={photoRef} className="hero-avatar-photo" src={bronze} alt="Любовь Чуйко" />
         <img className="hero-avatar-xray" src={steel} alt="" aria-hidden="true" />

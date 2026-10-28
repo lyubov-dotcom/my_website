@@ -21,7 +21,7 @@
   max-width: 100%;
   aspect-ratio: 864 / 1152;
   cursor: default;
-  touch-action: none;
+  touch-action: pan-y;
 }
 
 .hero-avatar-photo,
